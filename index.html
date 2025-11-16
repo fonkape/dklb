@@ -993,47 +993,61 @@
     <div class="aurora-accent mb-12 w-32"></div>
     
     <div class="space-y-8">
+      
       <div class="nb-border nb-shadow p-8 hover-warp card-bg">
         <h3 class="text-2xl font-bold mb-6">FinTech: Token-Lifecycle unter MiCA</h3>
         <div class="grid md:grid-cols-3 gap-8">
           <div>
             <div class="text-4xl mb-3" style="color: var(--shadow);">01</div>
             <strong class="block mb-3 text-lg">Problem</strong>
-            <p class="text-[var(--text-muted)]">Bank wollte Asset-Tokenization, unsicher über MiCA-Konformität. Rechtliche Unklarheit blockierte €10M Investment. 18 Monate geschätzte Entwicklungszeit.</p>
+            <p class="text-[var(--text-muted)]">
+              Bank wollte Asset-Tokenization, aber Legal blockierte das €10M-Projekt wegen MiCA-Unsicherheit. Tech-Team und Legal sprachen nicht dieselbe Sprache. Geschätzte 18 Monate Stillstand.
+            </p>
           </div>
           <div>
             <div class="text-4xl mb-3" style="color: var(--shadow);">02</div>
-            <strong class="block mb-3 text-lg">Lösung</strong>
-            <p class="text-[var(--text-muted)]">Rechtssicheres Design mit Compliance-Layer, Custody-Modell nach BaFin-Standards. Privacy-by-Design Architektur. Smart Contract Audit inklusive.</p>
+            <strong class="block mb-3 text-lg">Meine Lösung (Als Architekt)</strong>
+            <p class="text-[var(--text-muted)]">
+              <strong>Als Übersetzer</strong> habe ich die MiCA-Anforderungen in eine **technische Architektur-Blaupause** übersetzt. Ich habe dem Legal-Team die Smart-Contract-Logik (z.B. Custody, Compliance-Layer) validierbar gemacht und dem Dev-Team klare Compliance-User-Stories geliefert.
+            </p>
           </div>
           <div>
             <div class="text-4xl mb-3" style="color: var(--shadow);">03</div>
             <strong class="block mb-3 text-lg">Ergebnis</strong>
-            <p class="text-[var(--text-muted)]">Projekt erhielt grünes Licht von Legal & Regulatoren. Time-to-Market: 8 Wochen. €10M Investment freigegeben. Produktionsreif in 6 Monaten statt 18.</p>
+            <p class="text-[var(--text-muted)]">
+              Grünes Licht von Legal & Regulatoren **innerhalb von Tagen**. Das €10M-Investment wurde freigegeben, da die Architektur von allen Stakeholdern verstanden und abgenommen war. Time-to-Market: 8 Wochen.
+            </p>
           </div>
         </div>
       </div>
 
       <div class="nb-border nb-shadow p-8 hover-warp card-bg">
-        <h3 class="text-2xl font-bold mb-6">Logistik: Blockchain für Supply Chain</h3>
+        <h3 class="text-2xl font-bold mb-6">Logistik: Blockchain & GDPR-Konflikt</h3>
         <div class="grid md:grid-cols-3 gap-8">
           <div>
             <div class="text-4xl mb-3" style="color: var(--shadow);">01</div>
             <strong class="block mb-3 text-lg">Problem</strong>
-            <p class="text-[var(--text-muted)]">Spedition wollte Tracking tokenisieren. GDPR-Bedenken wegen On-Chain-Daten. Compliance-Team blockierte Projekt. Wettbewerbsnachteil gegenüber digitalen Konkurrenten.</p>
+            <p class="text-[var(--text-muted)]">
+              Spedition wollte Tracking tokenisieren. Der Datenschutzbeauftragte (DPO) stoppte das Projekt wegen GDPR ("Recht auf Vergessenwerden") vs. Blockchain ("Unveränderlichkeit").
+            </p>
           </div>
           <div>
             <div class="text-4xl mb-3" style="color: var(--shadow);">02</div>
-            <strong class="block mb-3 text-lg">Lösung</strong>
-            <p class="text-[var(--text-muted)]">Privacy-by-Design-Architektur mit Zero-Knowledge-Proofs. Off-Chain-Datenspeicher mit On-Chain-Hashes. GDPR-konforme "Right-to-be-Forgotten" Implementation.</p>
+            <strong class="block mb-3 text-lg">Meine Lösung (Als Architekt)</strong>
+            <p class="text-[var(--text-muted)]">
+              Die Lösung war **architektonisch**: Ich designte ein 'Hybrid-Modell'. Nur **anonyme Hashes** (Beweise) kommen On-Chain. Die PBD (Namen, Adressen) bleiben Off-Chain und löschbar. Diese Blaupause habe ich dem DPO präsentiert und die Freigabe erwirkt.
+            </p>
           </div>
           <div>
             <div class="text-4xl mb-3" style="color: var(--shadow);">03</div>
             <strong class="block mb-3 text-lg">Ergebnis</strong>
-            <p class="text-[var(--text-muted)]">GDPR-konforme Blockchain-Lösung in Produktion. 40% Effizienzsteigerung im Tracking. €200K jährliche Einsparungen durch Automatisierung. Marktführerposition gesichert.</p>
+            <p class="text-[var(--text-muted)]">
+              Die **architektonische Freigabe** durch den DPO entblockierte das Projekt. Die GDPR-konforme Lösung ist in Produktion, spart €200K/Jahr durch Automatisierung und sichert die Marktführerposition.
+            </p>
           </div>
         </div>
       </div>
+
     </div>
   </div>
 </section>
