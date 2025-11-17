@@ -5,7 +5,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="description" content="Daniel Kleiboldt – Solutions Architect & Consultant. Brücke zwischen Jura, Business & Tech." />
   <meta name="author" content="Daniel Kleiboldt" />
-  <title>Daniel Kleiboldt - Solutions Architect</title>
+  
+  <title>Daniel Kleiboldt - Legal & Solutions Architecture</title>
+  
+  <link rel="icon" href="data:image/svg+xml,%3Csvg viewBox='0 0 140 110' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M 35 20 Q 25 20 25 30 L 25 45 Q 25 55 15 55 Q 25 55 25 65 L 25 80 Q 25 90 35 90' fill='none' stroke='%23000' stroke-width='8' stroke-linecap='square'/%3E%3Ctext x='70' y='68' font-family='Space Mono, monospace' font-size='44' font-weight='bold' text-anchor='middle' fill='%230055FF'%3Edk%3C/text%3E%3Cpath d='M 105 20 Q 115 20 115 30 L 115 45 Q 115 55 125 55 Q 115 55 115 65 L 115 80 Q 115 90 105 90' fill='none' stroke='%23000' stroke-width='8' stroke-linecap='square'/%3E%3C/svg%3E" media="(prefers-color-scheme: light)">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg viewBox='0 0 140 110' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M 35 20 Q 25 20 25 30 L 25 45 Q 25 55 15 55 Q 25 55 25 65 L 25 80 Q 25 90 35 90' fill='none' stroke='%23fff' stroke-width='8' stroke-linecap='square'/%3E%3Ctext x='70' y='68' font-family='Space Mono, monospace' font-size='44' font-weight='bold' text-anchor='middle' fill='%23ff0055'%3Edk%3C/text%3E%3Cpath d='M 105 20 Q 115 20 115 30 L 115 45 Q 115 55 125 55 Q 115 55 115 65 L 115 80 Q 115 90 105 90' fill='none' stroke='%23fff' stroke-width='8' stroke-linecap='square'/%3E%3C/svg%3E" media="(prefers-color-scheme: dark)">
   
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -385,10 +389,16 @@
       transition: all 0.3s ease;
     }
 
+    /* 3. LOGO IN NAV (STYLING) */
     .nav-logo {
       font-weight: bold;
       font-size: 1.25rem;
       font-family: 'Space Mono', monospace;
+      display: flex;
+      align-items: center;
+    }
+    .nav-logo span {
+      display: block; /* Verhindert Wackeln beim Laden */
     }
 
     .nav-links {
@@ -665,7 +675,16 @@
 <div class="freelance-only">
 
 <nav class="sticky-nav hidden" id="freelance-nav">
-  <div class="nav-logo">Daniel Kleiboldt</div>
+  
+  <div class="nav-logo">
+    <svg class="h-8 w-auto mr-3" viewBox="0 0 140 110" xmlns="http://www.w3.org/2000/svg">
+      <path d="M 35 20 Q 25 20 25 30 L 25 45 Q 25 55 15 55 Q 25 55 25 65 L 25 80 Q 25 90 35 90" fill="none" stroke="currentColor" stroke-width="8" stroke-linecap="square"/>
+      <text x="70" y="68" font-family="Space Mono, monospace" font-size="44" font-weight="bold" text-anchor="middle" fill="var(--shadow)">dk</text>
+      <path d="M 105 20 Q 115 20 115 30 L 115 45 Q 115 55 125 55 Q 115 55 115 65 L 115 80 Q 115 90 105 90" fill="none" stroke="currentColor" stroke-width="8" stroke-linecap="square"/>
+    </svg>
+    <span>Daniel Kleiboldt</span>
+  </div>
+
   <div class="nav-links">
     <a href="#leistungen" class="nav-link">Leistungen</a>
     <a href="#erfolge" class="nav-link">Erfolge</a>
