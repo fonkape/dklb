@@ -29,6 +29,7 @@
 
     /* ===== THEME VARIABLES ===== */
     :root {
+      /* DARK / PINK (Freelance Default) */
       --bg: #000000;
       --text: #ffffff;
       --text-muted: #a3a3a3;
@@ -39,12 +40,13 @@
     }
 
     [data-theme="light"] {
+      /* LIGHT / ARCHITECT BLUE (Portfolio Default) */
       --bg: #f8fdf8;
       --text: #1a1a1a;
       --text-muted: #525252;
       --border: #1a1a1a;
-      --shadow: #10b981;
-      --accent-line: linear-gradient(135deg, #10b981 0%, #34d399 50%, #6ee7b7 100%);
+      --shadow: #0055FF; /* NEUES BLAU */
+      --accent-line: linear-gradient(135deg, #0055FF 0%, #0077FF 50%, #4facfe 100%); /* NEUES BLAU */
       --card-bg: #ffffff;
     }
 
@@ -603,7 +605,7 @@
           <text x="10" y="38" font-family="Arial" font-size="36" font-weight="bold" fill="currentColor">Python</text>
           <text x="10" y="68" font-family="Arial" font-size="22" fill="currentColor">INSTITUTE</text>
           <circle cx="225" cy="40" r="38" fill="none" stroke="currentColor" stroke-width="5"/>
-          <text x="210" y="52" font-family="Arial" font-size="30" font-weight="bold" fill="currentColor">PI</text>
+          <text x="225" y="45" font-family="Arial" font-size="30" font-weight="bold" fill="currentColor" text-anchor="middle" dominant-baseline="middle">PI</text>
         </svg>
       </div>
       <h3 class="text-xl font-bold mb-3 text-center">PCAP</h3>
@@ -844,7 +846,11 @@
     <div class="space-y-8">
       
       <div class="nb-border nb-shadow p-8 card-bg">
-        <h3 class="text-2xl font-bold mb-4">[Der Job] "Ich will ein Finanzprodukt (RWA) tokenisieren, aber MiCA blockiert mich."</h3>
+        <div class="nb-border p-6 mb-8" style="border-color: var(--shadow); box-shadow: 4px 4px 0 var(--shadow);">
+          <h3 class="text-2xl font-bold" style="color: var(--shadow);">"Ich will ein Finanzprodukt (RWA) tokenisieren, aber MiCA blockiert mich."</h3>
+        </div>
+        
+        <h3 class="text-2xl font-bold mb-4">Lösungs-Architektur: MiCA & RWA</h3>
         <p class="text-[var(--text-muted)] leading-relaxed">
           <strong>Das Problem:</strong> Ihre Rechtsabteilung sieht MiCA als Risiko, Ihr Tech-Team versteht die Anforderungen an den Token-Lifecycle nicht. Das Projekt stagniert.
           <br><br>
@@ -855,7 +861,11 @@
       </div>
 
       <div class="nb-border nb-shadow p-8 card-bg">
-        <h3 class="text-2xl font-bold mb-4">[Der Job] "Ich will unsere Supply Chain auf eine Blockchain bringen, aber die GDPR ist ein Problem."</h3>
+        <div class="nb-border p-6 mb-8" style="border-color: var(--shadow); box-shadow: 4px 4px 0 var(--shadow);">
+          <h3 class="text-2xl font-bold" style="color: var(--shadow);">"Ich will unsere Supply Chain auf eine Blockchain bringen, aber die GDPR ist ein Problem."</h3>
+        </div>
+        
+        <h3 class="text-2xl font-bold mb-4">Lösungs-Architektur: Blockchain & GDPR</h3>
         <p class="text-[var(--text-muted)] leading-relaxed">
           <strong>Das Problem:</strong> Daten auf einer Blockchain sind unveränderlich ("immutable"). Die GDPR fordert das "Recht auf Vergessenwerden". Das scheint ein unlösbarer Widerspruch.
           <br><br>
@@ -866,11 +876,15 @@
       </div>
 
       <div class="nb-border nb-shadow p-8 card-bg">
-        <h3 class="text-2xl font-bold mb-4">[Der Job] "Ich will eine KI zur Vertragsanalyse nutzen, aber habe Angst vor Haftung und 'Halluzinationen'."</h3>
+        <div class="nb-border p-6 mb-8" style="border-color: var(--shadow); box-shadow: 4px 4px 0 var(--shadow);">
+          <h3 class="text-2xl font-bold" style="color: var(--shadow);">"Ich will eine KI zur Vertragsanalyse nutzen, aber habe Angst vor Haftung und 'Halluzinationen'."</h3>
+        </div>
+        
+        <h3 class="text-2xl font-bold mb-4">Lösungs-Architektur: AI Governance (RAG / LLMO)</h3>
         <p class="text-[var(--text-muted)] leading-relaxed">
           <strong>Das Problem:</strong> Ein LLM (wie GPT) ist ein Sprachmodell, keine Wissensdatenbank. Es kann überzeugend falsche Fakten erfinden ("halluzinieren"). Wenn Ihre KI einen Vertrag falsch prüft, entsteht ein Haftungsrisiko.
           <br><br>
-          <strong>Meine Lösung (Die Architektur):</strong> Ein **RAG-System (Retrieval-Augmented Generation)** mit klarem Compliance-Layer. Die KI "denkt" nicht frei, sondern agiert als intelligenter Assistent, der nur auf *Ihrer* validierten Wissensdatenbank (z.B. Ihre internen Compliance-Regeln, aktuelle Gesetze) arbeitet.
+          <strong>Meine Lösung (Die Architektur):</strong> Ein **RAG-System (Retrieval-Augmented Generation)**. Dies ist die technische Umsetzung von **LLMO (Large Language Model Optimization)**: Die KI "denkt" nicht frei, sondern agiert als intelligenter Assistent, der nur auf *Ihrer* validierten, internen Wissensdatenbank (z.B. Compliance-Regeln, Gesetze) arbeitet.
           <br><br>
           <strong>Das Ergebnis:</strong> Sie nutzen die Power von LLMs ohne das Halluzinations-Risiko. Die KI liefert nur Antworten, die auf Ihren geprüften Quellen basieren.
         </p>
@@ -908,8 +922,8 @@
         </p>
         <ul class="text-sm text-[var(--text-muted)] space-y-2">
           <li>• Tokenization-Strategien entwickeln</li>
-          <li>• Smart Contract Design</li>
-          <li>• System-Architektur mit Compliance-Layer</li>
+          <li>• Smart Contract Design (Compliance-Layer)</li>
+          <li>• Design von KI-Architekturen (RAG / LLMO)</li>
         </ul>
       </div>
 
@@ -1077,14 +1091,21 @@
     <div class="nb-border nb-shadow p-6 md:p-10 card-bg">
       <h3 class="text-3xl font-bold mb-8 text-center">Der Wert von Compliance-by-Design</h3>
       
-      <div class="relative" style="height: 400px;">
-        <div class="absolute left-0 top-0 bottom-12 flex flex-col justify-between text-sm text-[var(--text-muted)]">
+      <div class="relative pt-12" style="height: 400px;">
+        
+        <div class="absolute" style="left: 50%; top: 0;">
+          <div class="absolute left-1/2 transform -translate-x-1/2 nb-border bg-[var(--shadow)] text-white px-3 py-1 text-xs font-bold whitespace-nowrap">
+            ← HEUTE (MiCA)
+          </div>
+        </div>
+
+        <div class="absolute left-0 top-12 bottom-12 flex flex-col justify-between text-sm text-[var(--text-muted)]">
           <span>Hoher ROI</span>
           <span></span>
           <span>Niedriger ROI</span>
         </div>
     
-        <div class="absolute left-24 right-8 top-0 bottom-12">
+        <div class="absolute left-24 right-8 top-12 bottom-12">
           <div class="absolute inset-0 flex flex-col justify-between">
             <div class="border-t-2 border-dashed" style="border-color: var(--text-muted); opacity: 0.2;"></div>
             <div class="border-t-2 border-dashed" style="border-color: var(--text-muted); opacity: 0.2;"></div>
@@ -1092,14 +1113,11 @@
           </div>
     
           <svg class="absolute inset-0 w-full h-full" viewBox="0 0 100 100" preserveAspectRatio="none">
-            <path d="M 0 60 Q 20 50, 40 45 L 50 42 Q 60 41, 100 40" stroke="var(--text-muted)" stroke-width="3" fill="none" stroke-dasharray="8 8" />
-            <path d="M 0 80 Q 20 78, 40 70 L 50 42 Q 70 10, 100 0" stroke="var(--shadow)" stroke-width="4" fill="none" />
+            <path d="M 0 60 Q 20 50, 40 45 L 50 42 Q 60 41, 100 40" stroke="var(--text-muted)" stroke-width="2.5" fill="none" stroke-dasharray="6 6" />
+            <path d="M 0 80 Q 20 78, 40 70 L 50 42 Q 70 10, 100 0" stroke="var(--shadow)" stroke-width="3" fill="none" />
           </svg>
     
           <div class="absolute" style="left: 50%; top: 0; bottom: 0;">
-            <div class="absolute -top-12 left-1/2 transform -translate-x-1/2 nb-border bg-[var(--shadow)] text-white px-3 py-1 text-xs font-bold whitespace-nowrap">
-              ← HEUTE (MiCA)
-            </div>
             <div class="absolute top-0 bottom-0 w-0.5 border-l-2 border-dashed" style="border-color: var(--shadow);"></div>
             <span class="absolute -bottom-8 left-1/2 transform -translate-x-1/2 text-xs font-bold">2025</span>
           </div>
@@ -1114,7 +1132,7 @@
 
       <div class="flex flex-col md:flex-row justify-center gap-4 md:gap-8 mt-12">
         <div class="flex items-center gap-2">
-          <div class="w-4 h-1 border-t-4 border-dashed" style="border-color: var(--text-muted);"></div>
+          <div class="w-4 h-1 border-t-2 border-dashed" style="border-color: var(--text-muted);"></div>
           <span class="text-sm text-[var(--text-muted)]">Innovation 'Quick & Dirty'</span>
         </div>
         <div class="flex items-center gap-2">
@@ -1159,7 +1177,7 @@
             <text x="10" y="38" font-family="Arial" font-size="36" font-weight="bold" fill="currentColor">Python</text>
             <text x="10" y="68" font-family="Arial" font-size="22" fill="currentColor">INSTITUTE</text>
             <circle cx="225" cy="40" r="38" fill="none" stroke="currentColor" stroke-width="5"/>
-            <text x="210" y="52" font-family="Arial" font-size="30" font-weight="bold" fill="currentColor">PI</text>
+            <text x="225" y="45" font-family="Arial" font-size="30" font-weight="bold" fill="currentColor" text-anchor="middle" dominant-baseline="middle">PI</text>
           </svg>
         </div>
         <h3 class="text-xl font-bold mb-3 text-center">PCAP</h3>
