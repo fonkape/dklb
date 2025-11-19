@@ -1,1339 +1,433 @@
 <!DOCTYPE html>
-<html lang="de" class="scroll-smooth" data-theme="dark" data-variant="portfolio">
+<html lang="de" class="scroll-smooth">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Daniel Kleiboldt – Solutions Architect & Consultant. Brücke zwischen Jura, Business & Tech." />
-  <meta name="author" content="Daniel Kleiboldt" />
+  <title>Daniel Kleiboldt | Solutions Architect</title>
+  <meta name="description" content="Daniel Kleiboldt - Legal Engineer & Solutions Architect. Die Schnittstelle zwischen Recht, Business und Technologie." />
   
-  <title>Daniel Kleiboldt - Legal & Solutions Architecture</title>
-  
-  <link rel="icon" href="data:image/svg+xml,%3Csvg viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M 35 10 Q 20 10 20 25 L 20 75 Q 20 90 35 90' fill='none' stroke='%23000' stroke-width='12' stroke-linecap='square'/%3E%3Ctext x='50' y='62' font-family='Space Mono, monospace' font-size='40' font-weight='bold' text-anchor='middle' fill='%230055FF'%3Edk%3C/text%3E%3Cpath d='M 65 10 Q 80 10 80 25 L 80 75 Q 80 90 65 90' fill='none' stroke='%23000' stroke-width='12' stroke-linecap='square'/%3E%3C/svg%3E" media="(prefers-color-scheme: light)">
-  <link rel="icon" href="data:image/svg+xml,%3Csvg viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M 35 10 Q 20 10 20 25 L 20 75 Q 20 90 35 90' fill='none' stroke='%23fff' stroke-width='12' stroke-linecap='square'/%3E%3Ctext x='50' y='62' font-family='Space Mono, monospace' font-size='40' font-weight='bold' text-anchor='middle' fill='%23ff0055'%3Edk%3C/text%3E%3Cpath d='M 65 10 Q 80 10 80 25 L 80 75 Q 80 90 65 90' fill='none' stroke='%23fff' stroke-width='12' stroke-linecap='square'/%3E%3C/svg%3E" media="(prefers-color-scheme: dark)">
-  
+  <!-- DYNAMIC FAVICON -->
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' fill='%23002FA7'/%3E%3Ctext x='5' y='92' fill='white' font-family='monospace' font-weight='bold' font-size='45'%3Edk_%3C/text%3E%3C/svg%3E">
+
+  <!-- TAILWIND CSS -->
   <script src="https://cdn.tailwindcss.com"></script>
+  
+  <!-- ICONS -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   
+  <!-- FONTS -->
   <style>
-    @import url('https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@700;900&display=swap');
-    
-    * {
-      font-family: 'Space Mono', monospace;
-    }
+    @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=JetBrains+Mono:wght@300;400;500;700&display=swap');
 
-    /* Body text uses Inter */
-    p, li, .body-text {
-      font-family: 'Inter', sans-serif;
-    }
-
-    /* Headlines stay Space Mono */
-    h1, h2, h3, h4, h5, h6, strong, .headline-text {
-      font-family: 'Space Mono', monospace;
-    }
-
-    /* ===== THEME VARIABLES ===== */
     :root {
-      /* DARK / PINK (Freelance Default) */
-      --bg: #000000;
-      --text: #ffffff;
-      --text-muted: #a3a3a3;
-      --border: #ffffff;
-      --shadow: #ff0055;
-      --accent-line: linear-gradient(135deg, #667eea 0%, #764ba2 25%, #f093fb 50%, #4facfe 75%, #00f2fe 100%);
-      --card-bg: #111111;
-    }
-
-    [data-theme="light"] {
-      /* LIGHT / ARCHITECT BLUE (Portfolio Default) */
-      --bg: #f8fdf8;
-      --text: #1a1a1a;
-      --text-muted: #525252;
-      --border: #1a1a1a;
-      --shadow: #0055FF; /* NEUES BLAU */
-      --accent-line: linear-gradient(135deg, #0055FF 0%, #0077FF 50%, #4facfe 100%); /* NEUES BLAU */
-      --card-bg: #ffffff;
+      --ikb: #002FA7; /* International Klein Blue */
+      --bg: #ffffff;
+      --text: #000000;
     }
 
     body {
       background-color: var(--bg);
       color: var(--text);
+      font-family: 'Playfair Display', serif;
+    }
+
+    .font-mono { font-family: 'JetBrains Mono', monospace; }
+    .font-serif { font-family: 'Playfair Display', serif; }
+
+    /* SWISS UTILS */
+    .swiss-border-b { border-bottom: 2px solid black; }
+    .swiss-border-t { border-top: 2px solid black; }
+    .swiss-border-r { border-right: 2px solid black; }
+    .swiss-border-l { border-left: 2px solid black; }
+    .swiss-border { border: 2px solid black; }
+
+    .hover-ikb:hover {
+      background-color: var(--ikb);
+      color: white;
       transition: all 0.3s ease;
     }
+    .hover-ikb:hover * { color: white; border-color: white; }
 
-    /* Show/Hide based on variant */
-    [data-variant="portfolio"] .freelance-only { display: none !important; }
-    [data-variant="freelance"] .portfolio-only { display: none !important; }
+    /* LOGO ANIMATION */
+    @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
+    .cursor-blink { animation: blink 1s step-end infinite; }
 
-    /* Neo-Brutalist Core */
-    .nb-border { border: 4px solid var(--border); }
-    .nb-shadow { box-shadow: 6px 6px 0 var(--shadow); }
-    .hover-warp:hover { 
-      transform: translate(-4px, -4px); 
-      box-shadow: 10px 10px 0 var(--shadow); 
-      transition: all 0.2s ease;
+    /* VENN DIAGRAM */
+    .venn-container { position: relative; height: 400px; width: 100%; display: flex; justify-content: center; align-items: center; }
+    .venn-circle {
+      position: absolute; width: 280px; height: 280px; border-radius: 50%; border: 2px solid black;
+      display: flex; justify-content: center; align-items: flex-start; padding-top: 2rem;
+      font-family: 'JetBrains Mono', monospace; font-weight: bold; letter-spacing: 0.05em;
+      background: rgba(255,255,255,0.5); transition: all 0.5s ease;
     }
-
-    .card-bg { background-color: var(--card-bg); }
-
-    /* Aurora Line */
-    .aurora-accent {
-      background: var(--accent-line);
-      height: 3px;
-    }
-
-    /* Glitch */
-    .glitch-title { position: relative; }
-    .glitch-title::after {
-      content: attr(data-text);
-      position: absolute;
-      left: 2px;
-      top: 2px;
-      color: var(--shadow);
-      opacity: 0.6;
-      clip-path: polygon(0 0, 100% 0, 100% 20%, 0 20%);
-      animation: glitch 2s infinite;
-    }
-    @keyframes glitch {
-      0% { transform: translate(0,0); }
-      30% { transform: translate(2px,-1px); }
-      60% { transform: translate(-2px,1px); }
-      100% { transform: translate(0,0); }
+    .venn-law { top: 0; left: 50%; transform: translateX(-85%); z-index: 1; }
+    .venn-tech { top: 0; left: 50%; transform: translateX(-15%); z-index: 1; }
+    .venn-biz { bottom: 20px; left: 50%; transform: translateX(-50%); z-index: 2; align-items: flex-end; padding-bottom: 2rem; padding-top: 0;}
+    .venn-me {
+      position: absolute; top: 50%; left: 50%; transform: translate(-50%, -40%);
+      width: 140px; height: 140px; background-color: var(--ikb); border-radius: 50%;
+      z-index: 10; display: flex; flex-direction: column; justify-content: center; align-items: center;
+      color: white; box-shadow: 0 0 30px rgba(0, 47, 167, 0.4); text-align: center;
     }
 
-    /* Glitch on specific word - for "bridge" in Freelance */
-    .glitch-word {
-      position: relative;
-      display: inline-block;
-    }
-    .glitch-word::before {
-      content: attr(data-text);
-      position: absolute;
-      left: 0;
-      top: 0;
-      width: 100%;
-      height: 100%;
-      color: var(--shadow);
-      opacity: 0.6;
-      clip-path: polygon(0 0, 100% 0, 100% 45%, 0 45%);
-      animation: glitch 2s infinite;
-    }
-    .glitch-word::after {
-      content: attr(data-text);
-      position: absolute;
-      left: 0;
-      top: 0;
-      width: 100%;
-      height: 100%;
-      color: var(--shadow);
-      opacity: 0.6;
-      clip-path: polygon(0 55%, 100% 55%, 100% 100%, 0 100%);
-      animation: glitch 2s infinite reverse;
-    }
-
-    /* Social Icons */
-    .social-icon {
-      width: 60px;
-      height: 60px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 28px;
-      background: white;
-      color: black;
-    }
-    .x-logo { width: 32px; height: 32px; }
-
-    /* Toggle Buttons */
-    .toggle-container {
-      position: fixed;
-      top: 2rem;
-      right: 2rem;
-      z-index: 50;
-      display: flex;
-      flex-direction: column;
-      gap: 1rem;
-      transition: all 0.3s ease;
-    }
-
-    /* Collapsed state - just a circle */
-    .toggle-container:not(:hover) {
-      width: 60px;
-      height: 60px;
-      overflow: hidden;
-    }
-
-    .toggle-container:not(:hover) .toggle-group {
-      visibility: hidden;
-      opacity: 0;
-      width: 0;
-      height: 0;
-      padding: 0;
-      border: 0;
-      box-shadow: none;
-    }
-
-    .toggle-container:not(:hover) .toggle-group:first-child {
-      visibility: visible;
-      opacity: 1;
-      display: flex;
-      width: 60px;
-      height: 60px;
-      padding: 0;
-      border-radius: 50%;
-      justify-content: center;
-      align-items: center;
-      position: relative;
-      gap: 0;
-      border: 4px solid var(--border);
-      box-shadow: 6px 6px 0 var(--shadow);
-    }
-
-    .toggle-container:not(:hover) .toggle-group:first-child .toggle-btn {
-      visibility: hidden;
-      opacity: 0;
-      width: 0;
-      min-width: 0;
-      overflow: hidden;
-    }
-
-    /* Switch icon SVG */
-    .toggle-container:not(:hover) .toggle-group:first-child::before {
-      content: "";
-      display: block;
-      width: 28px;
-      height: 28px;
-      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23ffffff' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M16 3h5v5M4 20L21 3M21 16v5h-5M15 15l6 6M4 4l5 5'/%3E%3C/svg%3E");
-      background-size: contain;
-      background-repeat: no-repeat;
-      background-position: center;
-    }
-
-    [data-theme="light"] .toggle-container:not(:hover) .toggle-group:first-child::before {
-      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%231a1a1a' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M16 3h5v5M4 20L21 3M21 16v5h-5M15 15l6 6M4 4l5 5'/%3E%3C/svg%3E");
-    }
-
-    /* Expanded state on hover */
-    .toggle-container:hover .toggle-group:first-child::before {
-      display: none;
-    }
-
-    .toggle-group {
-      background: var(--card-bg);
-      border: 4px solid var(--border);
-      border-radius: 12px;
-      padding: 0.75rem;
-      display: flex;
-      gap: 1rem;
-      box-shadow: 6px 6px 0 var(--shadow);
-      transition: all 0.3s ease;
-    }
-
-    .toggle-btn {
-      min-width: 110px;
-      height: 50px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-weight: bold;
-      font-size: 0.9rem;
-      cursor: pointer;
-      transition: all 0.2s;
-      border-radius: 6px;
-      border: 2px solid transparent;
-    }
-    .toggle-btn.active {
-      background: var(--shadow);
-      color: white;
-    }
-
-    /* Convergence Diagram */
-    .convergence {
-      position: relative;
-      height: 380px;
-      margin: 3rem 0;
-    }
-
-    .input-box {
-      position: absolute;
-      top: 0;
-      width: 140px;
-      height: 140px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      background: var(--card-bg);
-      border: 4px solid var(--border);
-      box-shadow: 6px 6px 0 var(--shadow);
-    }
-    .input-box.recht { left: 10%; }
-    .input-box.tech { right: 10%; }
-
-    .plus-box {
-      position: absolute;
-      top: 50px;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 60px;
-      height: 60px;
-      background: var(--shadow);
-      border: 4px solid var(--border);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 2rem;
-      font-weight: bold;
-      color: white;
-      box-shadow: 6px 6px 0 var(--border);
-    }
-
-    /* Proper Curly Bracket { } */
-    .curly-bracket {
-      position: absolute;
-      top: 160px;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 60%;
-      height: 120px;
-    }
-    .curly-bracket path {
-      stroke: var(--border);
-      stroke-width: 4;
-      fill: none;
-      stroke-linecap: round;
-    }
-
-    .output-box {
-      position: absolute;
-      bottom: 0;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 75%;
-      padding: 1.8rem;
-      text-align: center;
-      font-weight: bold;
-      font-size: 2rem;
-      background: var(--shadow);
-      color: white;
-      border: 4px solid var(--border);
-      box-shadow: 8px 8px 0 var(--border);
-    }
-
-    /* CTA Button */
-    .cta-button {
-      display: inline-block;
-      padding: 1.5rem 3rem;
-      font-size: 1.25rem;
-      font-weight: bold;
-      background: var(--shadow);
-      color: white;
-      border: 4px solid var(--border);
-      box-shadow: 6px 6px 0 var(--border);
-      transition: all 0.2s;
-      text-decoration: none;
-    }
-    .cta-button:hover {
-      transform: translate(-4px, -4px);
-      box-shadow: 10px 10px 0 var(--border);
-    }
-
-    /* Timeline */
-    .timeline-line {
-      position: absolute;
-      left: 0;
-      top: 0;
-      bottom: 0;
-      width: 2px;
-      background: #333;
-    }
-    [data-theme="light"] .timeline-line { background: #e5e5e5; }
-
-    /* Process Steps */
-    .process-step {
-      position: relative;
-      padding-left: 80px;
-    }
-    .process-step::before {
-      content: attr(data-step);
-      position: absolute;
-      left: 0;
-      top: 0;
-      width: 60px;
-      height: 60px;
-      background: var(--shadow);
-      border: 4px solid var(--border);
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 2rem;
-      font-weight: bold;
-      color: white;
-    }
-
-    /* Sticky Navigation (Freelance only) */
-    .sticky-nav {
-      position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
-      z-index: 40;
-      background: var(--bg);
-      border-bottom: 4px solid var(--border);
-      padding: 1rem 2rem;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      box-shadow: 0 4px 0 var(--shadow);
-      transition: all 0.3s ease;
-    }
-
-    /* LOGO IN NAV (STYLING) */
-    .nav-logo {
-      font-weight: bold;
-      font-size: 1.25rem;
-      font-family: 'Space Mono', monospace;
-      display: flex;
-      align-items: center;
-    }
-    .nav-logo span {
-      display: block; /* Verhindert Wackeln beim Laden */
-    }
-
-    .nav-links {
-      display: flex;
-      gap: 2rem;
-      font-family: 'Space Mono', monospace;
-    }
-
-    .nav-link {
-      text-decoration: none;
-      color: var(--text);
-      font-weight: bold;
-      padding: 0.5rem 1rem;
-      transition: all 0.2s;
-      position: relative;
-    }
-
-    .nav-link::after {
-      content: '';
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      width: 0;
-      height: 3px;
-      background: var(--shadow);
-      transition: width 0.3s;
-    }
-
-    .nav-link:hover::after {
-      width: 100%;
-    }
-
-    /* Hide nav initially, show on scroll */
-    .sticky-nav.hidden {
-      transform: translateY(-100%);
-    }
-
-    /* Adjust toggle position when nav is visible */
-    [data-variant="freelance"] .toggle-container {
-      top: 6rem;
-    }
+    ::selection { background: var(--ikb); color: white; }
   </style>
 </head>
-<body class="bg-[var(--bg)] text-[var(--text)]">
+<body>
 
-<div class="toggle-container">
-  <div class="toggle-group">
-    <div class="toggle-btn active" data-variant-btn="portfolio">Portfolio</div>
-    <div class="toggle-btn" data-variant-btn="freelance">Freelance</div>
-  </div>
-  
-  <div class="toggle-group">
-    <div class="toggle-btn active" data-theme-btn="dark">Dark Mode</div>
-    <div class="toggle-btn" data-theme-btn="light">Light Mode</div>
-  </div>
-</div>
-
-<div class="portfolio-only">
-
-<section class="min-h-screen flex flex-col justify-center px-6 md:px-16">
-  <div class="max-w-4xl">
-    <h1 class="text-5xl md:text-7xl font-bold glitch-title leading-tight" data-text="Where Law, Business & Tech Converge">
-      Where Law, Business & Tech Converge
-    </h1>
-    <div class="aurora-accent mt-6 mb-8 w-48"></div>
-    <p class="mt-6 text-lg md:text-xl text-[var(--text-muted)] max-w-2xl leading-relaxed">
-      Diplom-Jurist mit Business-Erfahrung im Übergang zur Tech. 
-      Brückenbauer zwischen rechtlichen Anforderungen, strategischem Denken und technischer Umsetzung.
-    </p>
-    <div class="flex gap-4 mt-10">
-      <a href="https://github.com/dklb" target="_blank" class="social-icon nb-border nb-shadow hover-warp">
-        <i class="fab fa-github"></i>
-      </a>
-      <a href="https://linkedin.com/in/daniel-kleiboldt" target="_blank" class="social-icon nb-border nb-shadow hover-warp">
-        <i class="fab fa-linkedin"></i>
-      </a>
-      <a href="/cdn-cgi/l/email-protection#4e2a2f20272b220e25222b272c21222a3a602d2123" class="social-icon nb-border nb-shadow hover-warp">
-        <i class="fas fa-envelope"></i>
-      </a>
-      <a href="https://x.com/dklb" target="_blank" class="social-icon nb-border nb-shadow hover-warp">
-        <svg class="x-logo" viewBox="0 0 24 24" fill="currentColor">
-          <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
-        </svg>
-      </a>
-    </div>
-  </div>
-</section>
-
-<section class="px-6 md:px-16 py-24 border-t" style="border-color: var(--border);">
-  <div class="max-w-4xl space-y-12">
-    <div class="nb-border nb-shadow p-8 hover-warp card-bg">
-      <h3 class="text-2xl font-bold mb-4">Das Problem</h3>
-      <p class="text-[var(--text-muted)] text-lg leading-relaxed">
-        Tech-Projekte scheitern selten an Code-Qualität. Sie scheitern an der Lücke zwischen Business-Anforderungen, 
-        rechtlichen Rahmenbedingungen und technischer Umsetzung. Niemand spricht alle drei Sprachen.
-      </p>
-    </div>
-
-    <div class="solution-flow nb-shadow p-8">
-      <div class="convergence">
-        <div class="input-box recht">
-          <svg class="w-20 h-20" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="5" stroke-linecap="square">
-            <path d="M38 12 C44 12 48 16 48 22 C48 28 44 32 38 32 H 26 C20 32 16 36 16 42 C16 48 20 52 26 52 M26 32 V 52 M32 20 V 12 M32 52 V 44" />
-          </svg>
-          <strong>Recht</strong>
-        </div>
-
-        <div class="plus-box">+</div>
-
-        <div class="input-box tech">
-          <svg class="w-20 h-20" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="5" stroke-linecap="square">
-            <path d="M24 16 L 12 32 L 24 48" />
-            <path d="M40 16 L 52 32 L 40 48" />
-          </svg>
-          <strong>Tech</strong>
-        </div>
-
-        <svg class="curly-bracket" viewBox="0 0 300 120" preserveAspectRatio="none">
-          <path d="M 10,10 Q 10,20 20,20 L 135,20 Q 145,20 145,30 Q 145,20 155,20 L 280,20 Q 290,20 290,10" />
-        </svg>
-
-        <div class="output-box">Business-Lösung</div>
+  <!-- NAV -->
+  <nav class="fixed w-full bg-white z-50 swiss-border-b flex justify-between items-center px-6 md:px-12 h-24">
+    <!-- LOGO -->
+    <a href="#" class="group">
+      <div class="w-14 h-14 bg-[var(--ikb)] flex flex-col justify-end items-start p-1.5 hover:scale-105 transition-transform">
+        <span class="text-white font-mono font-bold text-lg leading-none tracking-tighter">
+          dk<span class="cursor-blink">_</span>
+        </span>
       </div>
-
-      <div class="grid md:grid-cols-3 gap-6 mt-24">
-        <div class="nb-border nb-shadow p-6 hover-warp card-bg">
-          <h4 class="text-xl font-bold mb-2">Legal & Regulatory</h4>
-          <p class="text-[var(--text-muted)]">Rechtliche Anforderungen verstehen, Risiken antizipieren, Compliance integrieren.</p>
-        </div>
-        <div class="nb-border nb-shadow p-6 hover-warp card-bg">
-          <h4 class="text-xl font-bold mb-2">Business & Strategy</h4>
-          <p class="text-[var(--text-muted)]">Wirtschaftliche Zusammenhänge erkennen, technische Lösungen unternehmerisch denken.</p>
-        </div>
-        <div class="nb-border nb-shadow p-6 hover-warp card-bg">
-          <h4 class="text-xl font-bold mb-2">Tech Implementation</h4>
-          <p class="text-[var(--text-muted)]">AI, Blockchain, Tokenization, RWA. Skalierbare Lösungen, klare Architektur.</p>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section class="px-6 md:px-16 py-24 border-t" style="border-color: var(--border);">
-  <h2 class="text-4xl font-bold mb-16">Werdegang</h2>
-  <div class="max-w-3xl relative pl-12">
-    <div class="timeline-line"></div>
-    <div class="space-y-12">
-      <div class="nb-border nb-shadow p-6 hover-warp card-bg">
-        <strong>Jura (WWU Münster)</strong><br>
-        <span class="text-[var(--text-muted)]">Fundament aus Logik, Struktur, Regulatorik.</span>
-      </div>
-      <div class="nb-border nb-shadow p-6 hover-warp card-bg">
-        <strong>Industrie & Business</strong><br>
-        <span class="text-[var(--text-muted)]">Sales, Recht, Compliance, HR-Strategie.</span>
-      </div>
-      <div class="nb-border nb-shadow p-6 hover-warp card-bg relative">
-        <div class="absolute left-0 top-0 bottom-0 w-1 bg-[var(--shadow)] -ml-12"></div>
-        <strong>AI Engineering Bootcamp</strong><br>
-        <span class="text-[var(--text-muted)]">Technische Transformation. (2025–2026, laufend)</span>
-      </div>
-      <div class="nb-border nb-shadow p-6 hover-warp card-bg">
-        <strong>Zukunft</strong><br>
-        <span class="text-[var(--text-muted)]">Solutions Architect: Brücke zwischen Business, Law & Tech.</span>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section class="px-6 md:px-16 py-24 border-t" style="border-color: var(--border);">
-  <h2 class="text-4xl font-bold mb-10">Projekte & Case Studies</h2>
-  <div class="grid md:grid-cols-2 gap-10 max-w-5xl">
-    <div class="nb-border nb-shadow p-6 hover-warp card-bg">
-      <div class="aurora-accent mb-4"></div>
-      <h3 class="text-2xl mb-3">PyLingo — NLP Prototype</h3>
-      <p class="text-[var(--text-muted)] mb-4">
-        Bootcamp-Projekt: Legal document classification + entity extraction (Python, Transformers, FastAPI).
-      </p>
-    </div>
-    <div class="nb-border nb-shadow p-6 hover-warp card-bg">
-      <div class="aurora-accent mb-4"></div>
-      <h3 class="text-2xl mb-3">Tokenization & RWA</h3>
-      <p class="text-[var(--text-muted)] mb-4">
-        Konzept: Rechtssichere Token-Lifecycle, Custody-Modelle, Oracles & Compliance-Layer.
-      </p>
-    </div>
-  </div>
-</section>
-
-<section class="px-6 md:px-16 py-24 border-t" style="border-color: var(--border);">
-  <h2 class="text-4xl font-bold mb-10">Tech Stack & Interests</h2>
-  <div class="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-5xl">
-    <div class="nb-border nb-shadow p-4 hover-warp card-bg text-center">Python</div>
-    <div class="nb-border nb-shadow p-4 hover-warp card-bg text-center">AI / Transformers</div>
-    <div class="nb-border nb-shadow p-4 hover-warp card-bg text-center">FastAPI</div>
-    <div class="nb-border nb-shadow p-4 hover-warp card-bg text-center">Smart Contracts</div>
-    <div class="nb-border nb-shadow p-4 hover-warp card-bg text-center">Tokenization / RWA</div>
-    <div class="nb-border nb-shadow p-4 hover-warp card-bg text-center">Data Governance</div>
-    <div class="nb-border nb-shadow p-4 hover-warp card-bg text-center">AWS / GCP</div>
-    <div class="nb-border nb-shadow p-4 hover-warp card-bg text-center">System Architecture</div>
-  </div>
-</section>
-
-<section class="px-6 md:px-16 py-24 border-t" style="border-color: var(--border);">
-  <h2 class="text-4xl font-bold mb-4">Zertifizierungen</h2>
-  <div class="aurora-accent mb-10 w-32"></div>
-  <p class="text-[var(--text-muted)] mb-12 max-w-3xl">
-    Im Rahmen des AI Engineering Bootcamps (2025–2026) erwerbe ich folgende Zertifizierungen:
-  </p>
-  <div class="grid md:grid-cols-3 gap-8 max-w-6xl">
-    
-    <div class="nb-border nb-shadow p-8 hover-warp card-bg">
-      <div class="flex items-center justify-center mb-6 h-40">
-        <svg class="w-40 h-40" viewBox="0 0 265 80">
-          <text x="10" y="38" font-family="Arial" font-size="36" font-weight="bold" fill="currentColor">Python</text>
-          <text x="10" y="68" font-family="Arial" font-size="22" fill="currentColor">INSTITUTE</text>
-          <circle cx="225" cy="40" r="38" fill="none" stroke="currentColor" stroke-width="5"/>
-          <text x="225" y="45" font-family="Arial" font-size="30" font-weight="bold" fill="currentColor" text-anchor="middle" dominant-baseline="middle">PI</text>
-        </svg>
-      </div>
-      <h3 class="text-xl font-bold mb-3 text-center">PCAP</h3>
-      <p class="text-[var(--text-muted)] text-center text-sm">Certified Associate in Python Programming</p>
-    </div>
-    
-    <div class="nb-border nb-shadow p-8 hover-warp card-bg">
-      <div class="flex items-center justify-center mb-6 h-40">
-        <svg class="w-48 h-40" viewBox="0 0 200 80" fill="currentColor">
-          <text x="10" y="30" font-family="Arial" font-size="40" font-weight="bold">aws</text>
-          <text x="10" y="55" font-family="Arial" font-size="14" font-weight="bold">Certified</text>
-          <text x="10" y="72" font-family="Arial" font-size="14" font-weight="bold">Cloud Practitioner</text>
-        </svg>
-      </div>
-      <h3 class="text-xl font-bold mb-3 text-center">AWS Certified Cloud Practitioner</h3>
-      <p class="text-[var(--text-muted)] text-center text-sm">Foundational Level</p>
-    </div>
-    
-    <div class="nb-border nb-shadow p-8 hover-warp card-bg">
-      <div class="flex items-center justify-center mb-6 h-40">
-        <svg class="w-40 h-40" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="square">
-          <path d="M16 20 H 32 V 28 H 16 V 20 Z" />
-          <path d="M24 28 L 24 36" />
-          <path d="M32 36 H 48 V 44 H 32 V 36 Z" />
-          <path d="M40 36 L 40 28" />
-          <path d="M24 44 H 40" />
-        </svg>
-      </div>
-      <h3 class="text-xl font-bold mb-3 text-center">Certified Blockchain Architect</h3>
-      <p class="text-[var(--text-muted)] text-center text-sm">(Ziel-Zertifizierung)</p>
-    </div>
-    
-  </div>
-</section>
-
-<section class="px-6 md:px-16 py-24 border-t" style="border-color: var(--border);">
-  <div class="grid md:grid-cols-2 gap-10 items-center max-w-4xl">
-    <div class="nb-border nb-shadow overflow-hidden">
-      <img src="profilbild.jpg" alt="Daniel Kleiboldt" class="w-full h-full object-cover">
-    </div>
-    <div>
-      <h2 class="text-3xl font-bold mb-4">Über mich</h2>
-      <div class="aurora-accent mb-6 w-24"></div>
-      <p class="text-lg leading-relaxed mb-4 text-[var(--text-muted)]">
-        Mein Weg ist meine Stärke. Nach 10+ Jahren als Jurist und Stratege in der globalen Industrie (Sales, Compliance) vollziehe ich den bewussten Schritt in die Tech.
-      </p>
-      <p class="text-lg leading-relaxed text-[var(--text-muted)]">
-        Warum? Weil die anspruchsvollsten Probleme – AI Governance, RWA-Tokenisierung, Data Compliance – nicht nur Code erfordern, sondern **Domänenexpertise**. 
-        Ich bringe diese Expertise als **Senior-Professional** mit und verbinde sie mit der technischen Tiefe des AI Engineerings, um als Solutions Architect zu agieren.
-      </p>
-    </div>
-  </div>
-</section>
-
-</div>
-
-<div class="freelance-only">
-
-<nav class="sticky-nav hidden" id="freelance-nav">
-  
-  <div class="nav-logo">
-    <svg class="h-8 w-auto mr-3" viewBox="0 0 140 110" xmlns="http://www.w3.org/2000/svg">
-      <path d="M 35 20 Q 25 20 25 30 L 25 45 Q 25 55 15 55 Q 25 55 25 65 L 25 80 Q 25 90 35 90" fill="none" stroke="currentColor" stroke-width="8" stroke-linecap="square"/>
-      <text x="70" y="68" font-family="Space Mono, monospace" font-size="44" font-weight="bold" text-anchor="middle" fill="var(--shadow)">dk</text>
-      <path d="M 105 20 Q 115 20 115 30 L 115 45 Q 115 55 125 55 Q 115 55 115 65 L 115 80 Q 115 90 105 90" fill="none" stroke="currentColor" stroke-width="8" stroke-linecap="square"/>
-    </svg>
-    <span>Daniel Kleiboldt</span>
-  </div>
-
-  <div class="nav-links">
-    <a href="#leistungen" class="nav-link">Leistungen</a>
-    <a href="#erfolge" class="nav-link">Erfolge</a>
-    <a href="#prozess" class="nav-link">Prozess</a>
-    <a href="#kontakt" class="nav-link">Kontakt</a>
-  </div>
-</nav>
-
-<section class="min-h-screen flex flex-col justify-center px-6 md:px-16">
-  <div class="max-w-4xl">
-    <h1 class="text-6xl md:text-8xl font-bold leading-tight mb-8">
-      I build the <span class="glitch-word" data-text="bridge">bridge</span>.<br>You cross it.
-    </h1>
-    <div class="aurora-accent mb-8 w-64"></div>
-    <p class="text-xl md:text-2xl text-[var(--text-muted)] max-w-2xl leading-relaxed mb-10">
-      Innovation wartet auf der anderen Seite. Aber zwischen Ihnen und dem Erfolg liegt ein Abgrund aus 
-      Regulatorik, technischer Komplexität und Risiko. Ich baue die Brücke.
-    </p>
-    <a href="#kontakt" class="cta-button">
-      Erstgespräch vereinbaren →
     </a>
-  </div>
-</section>
 
-<section class="px-6 md:px-16 py-16 border-t" style="border-color: var(--border);">
-  <div class="max-w-5xl">
-    <div class="grid md:grid-cols-3 gap-8">
-      <div class="nb-border nb-shadow p-8 card-bg text-center">
-        <div class="text-5xl font-bold mb-3" style="color: var(--shadow);">15+</div>
-        <p class="text-[var(--text-muted)]">Jahre kombinierte Expertise in Recht, Business & Tech</p>
-      </div>
-      
-      <div class="nb-border nb-shadow p-8 card-bg text-center">
-        <div class="text-5xl font-bold mb-3" style="color: var(--shadow);">100%</div>
-        <p class="text-[var(--text-muted)]">MiCA & GDPR Konformität bei allen Projekten</p>
-      </div>
-      
-      <div class="nb-border nb-shadow p-8 card-bg text-center">
-        <div class="text-5xl font-bold mb-3" style="color: var(--shadow);">6-8</div>
-        <p class="text-[var(--text-muted)]">Wochen durchschnittliche Time-to-Market</p>
-      </div>
+    <div class="font-mono text-xs md:flex gap-8 hidden">
+      <a href="#profile" class="hover:text-[var(--ikb)] hover:underline uppercase tracking-wide">Profile</a>
+      <a href="#problem" class="hover:text-[var(--ikb)] hover:underline uppercase tracking-wide">Problem</a>
+      <a href="#services" class="hover:text-[var(--ikb)] hover:underline uppercase tracking-wide">Services</a>
+      <a href="#invest" class="hover:text-[var(--ikb)] hover:underline uppercase tracking-wide font-bold">Kontakt</a>
     </div>
+  </nav>
 
-    <div class="mt-12 text-center">
-      <p class="text-sm text-[var(--text-muted)] mb-6">Spezialisiert auf:</p>
-      <div class="flex flex-wrap justify-center gap-4">
-        <div class="nb-border p-3 px-6 card-bg text-sm">FinTech</div>
-        <div class="nb-border p-3 px-6 card-bg text-sm">Supply Chain</div>
-        <div class="nb-border p-3 px-6 card-bg text-sm">Real Estate</div>
-        <div class="nb-border p-3 px-6 card-bg text-sm">Legal Tech</div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section class="px-6 md:px-16 py-24 border-t" style="border-color: var(--border);">
-  <div class="max-w-5xl">
-    <h2 class="text-4xl font-bold mb-12">Warum brauchen Sie eine Brücke?</h2>
-    
-    <div class="relative flex flex-col md:flex-row items-center justify-between gap-8 md:h-48">
-      <div class="nb-border nb-shadow p-8 w-full md:w-1D3 h-full flex items-center justify-center text-center card-bg">
-        <span class="text-xl font-bold">Innovative Tech<br>(Blockchain, AI, RWA)</span>
-      </div>
-
-      <div class="w-full md:w-1D3 h-full flex flex-row md:flex-col items-center justify-around gap-4 p-4 md:p-0">
-        <div class="nb-border nb-shadow p-4 text-lg font-bold" style="background-color: var(--shadow); color: white; border-color: var(--border);">RISIKO</div>
-        <div class="nb-border nb-shadow p-4 text-lg font-bold" style="background-color: var(--shadow); color: white; border-color: var(--border);">KOMPLEXITÄT</div>
-        <div class="nb-border nb-shadow p-4 text-lg font-bold" style="background-color: var(--shadow); color: white; border-color: var(--border);">UNSICHERHEIT</div>
-      </div>
-
-      <div class="nb-border nb-shadow p-8 w-full md:w-1D3 h-full flex items-center justify-center text-center card-bg">
-        <span class="text-xl font-bold">Ihr Business-Erfolg<br>(ROI, Go-Live)</span>
-      </div>
-    </div>
-
-    <p class="text-xl text-[var(--text-muted)] text-center max-w-3xl mx-auto mt-16">
-      Dazwischen: ein Abgrund. Ihre drei größten Blockierer. Die nächste Sektion erklärt sie.
-    </p>
-  </div>
-</section>
-
-<section class="px-6 md:px-16 py-24 border-t" style="border-color: var(--border);">
-  <div class="max-w-5xl">
-    <h2 class="text-4xl font-bold mb-12">Was hält Sie zurück?</h2>
-    
-    <div class="grid md:grid-cols-3 gap-8">
-      <div class="nb-border nb-shadow p-8 hover-warp card-bg">
-        <div class="text-4xl mb-4" style="color: var(--shadow);">01</div>
-        <h3 class="text-2xl font-bold mb-4">Unsicherheit</h3>
-        <p class="text-[var(--text-muted)]">
-          Sie wissen nicht, ob Ihre Blockchain-Idee überhaupt rechtlich umsetzbar ist. 
-          GDPR? MiCA? Was gilt eigentlich?
-        </p>
-      </div>
-
-      <div class="nb-border nb-shadow p-8 hover-warp card-bg">
-        <div class="text-4xl mb-4" style="color: var(--shadow);">02</div>
-        <h3 class="text-2xl font-bold mb-4">Komplexität</h3>
-        <p class="text-[var(--text-muted)]">
-          Legal spricht Paragraphen. Tech spricht Code. Business spricht ROI. 
-          Wer übersetzt zwischen den Welten?
-        </p>
-      </div>
-
-      <div class="nb-border nb-shadow p-8 hover-warp card-bg">
-        <div class="text-4xl mb-4" style="color: var(--shadow);">03</div>
-        <h3 class="text-2xl font-bold mb-4">Risiko</h3>
-        <p class="text-[var(--text-muted)]">
-          Ein Compliance-Fehler kann Sie Millionen kosten. 
-          Fehlende Tech-Expertise führt zu schlechter Architektur. Das Projekt scheitert.
-        </p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section class="px-6 md:px-16 py-24 border-t" style="border-color: var(--border);">
-  <div class="max-w-5xl">
-    <h2 class="text-4xl font-bold mb-4">Die Brücke</h2>
-    <div class="aurora-accent mb-12 w-32"></div>
-    
-    <div class="nb-border nb-shadow p-10 card-bg mb-12">
-      <p class="text-2xl leading-relaxed text-center">
-        Ich baue die Brücke zwischen Ihrer Vision und ihrer rechtskonformen, 
-        technisch soliden und wirtschaftlich sinnvollen Umsetzung.
+  <!-- 1. HERO -->
+  <section class="pt-40 pb-20 px-6 md:px-12">
+    <div class="max-w-7xl mx-auto">
+      <p class="font-mono text-xs uppercase tracking-[0.2em] mb-8 border-l-4 border-[var(--ikb)] pl-4">
+        /// Hybrid Professional
       </p>
-    </div>
-
-    <div class="grid md:grid-cols-3 gap-8">
-      <div class="nb-border nb-shadow p-8 hover-warp card-bg text-center flex flex-col items-center">
-        <svg class="w-16 h-16 mb-4" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="square" stroke-linejoin="miter">
-          <path d="M10 24 H 22 V 36 H 10 V 24 Z" />
-          <path d="M42 24 H 54 V 36 H 42 V 24 Z" />
-          <path d="M16 24 L 32 12 L 48 24" />
-          <path d="M32 12 V 52 M 20 52 H 44" />
-        </svg>
-        <h3 class="text-xl font-bold mb-3">Legal Foundation</h3>
-        <p class="text-[var(--text-muted)] text-sm">
-          Diplom-Jurist. GDPR, MiCA, Vertragsrecht. 
-          Ich kenne die Regeln des Spiels.
-        </p>
-      </div>
-
-      <div class="nb-border nb-shadow p-8 hover-warp card-bg text-center flex flex-col items-center">
-        <svg class="w-16 h-16 mb-4" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="square" stroke-linejoin="miter">
-          <path d="M12 20 H 52 V 48 H 12 V 20 Z" />
-          <path d="M24 20 V 12 H 40 V 20" />
-        </svg>
-        <h3 class="text-xl font-bold mb-3">Strategic Structure</h3>
-        <p class="text-[var(--text-muted)] text-sm">
-          Business-Erfahrung in Sales, Compliance, Strategie. 
-          Ihre Lösung muss wirtschaftlich Sinn machen.
-        </p>
-      </div>
-
-      <div class="nb-border nb-shadow p-8 hover-warp card-bg text-center flex flex-col items-center">
-        <svg class="w-16 h-16 mb-4" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="square" stroke-linejoin="miter">
-          <path d="M40 12 L 24 32 H 40 L 24 52" />
-        </svg>
-        <h3 class="text-xl font-bold mb-3">Technical Rails</h3>
-        <p class="text-[var(--text-muted)] text-sm">
-          Python, Blockchain, Smart Contracts, AI/ML. 
-          Ich spreche die Sprache Ihres Dev-Teams.
-        </p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section id="klartext" class="px-6 md:px-16 py-24 border-t" style="border-color: var(--border);">
-  <div class="max-w-5xl">
-    <h2 class="text-4xl font-bold mb-4">Klartext: Antworten auf Ihre drängendsten Fragen</h2>
-    <div class="aurora-accent mb-12 w-32"></div>
-    <p class="text-xl text-[var(--text-muted)] mb-12">
-      Innovation ist komplex. Hier sind direkte Antworten auf die "Jobs-to-be-Done", bei denen ich Sie als Architekt und Übersetzer unterstütze.
-    </p>
-    
-    <div class="space-y-8">
       
-      <div class="nb-border nb-shadow p-8 card-bg">
-        <div class="nb-border p-6 mb-8" style="border-color: var(--shadow); box-shadow: 4px 4px 0 var(--shadow);">
-          <h3 class="text-2xl font-bold" style="color: var(--shadow);">"Ich will ein Finanzprodukt (RWA) tokenisieren, aber MiCA blockiert mich."</h3>
-        </div>
-        
-        <h3 class="text-2xl font-bold mb-4">Lösungs-Architektur: MiCA & RWA</h3>
-        <p class="text-[var(--text-muted)] leading-relaxed">
-          <strong>Das Problem:</strong> Ihre Rechtsabteilung sieht MiCA als Risiko, Ihr Tech-Team versteht die Anforderungen an den Token-Lifecycle nicht. Das Projekt stagniert.
-          <br><br>
-          <strong>Meine Lösung (Die Architektur):</strong> Ich designe den **MiCA-konformen Token-Lifecycle** von Minting bis Burning. Ich definiere die Architektur für Custody (Verwahrung) und integriere Compliance-Layer direkt in den Smart Contract (z.B. Whitelisting-Mechanismen).
-          <br><br>
-          <strong>Das Ergebnis:</strong> Sie erhalten eine technische Blaupause, die Ihr Legal-Team freigibt und Ihr Dev-Team umsetzen kann.
-        </p>
-      </div>
+      <h1 class="text-7xl md:text-[9rem] leading-[0.85] font-serif mb-12">
+        Legal <span class="italic text-[var(--ikb)]">Mind.</span><br>
+        Tech <span class="italic text-[var(--ikb)]">Stack.</span>
+      </h1>
 
-      <div class="nb-border nb-shadow p-8 card-bg">
-        <div class="nb-border p-6 mb-8" style="border-color: var(--shadow); box-shadow: 4px 4px 0 var(--shadow);">
-          <h3 class="text-2xl font-bold" style="color: var(--shadow);">"Ich will unsere Supply Chain auf eine Blockchain bringen, aber die GDPR ist ein Problem."</h3>
+      <div class="grid md:grid-cols-12 gap-12 border-t-2 border-black pt-12">
+        <div class="md:col-span-8">
+          <p class="font-mono text-lg md:text-xl leading-relaxed">
+            Nach 10 Jahren in Recht & Compliance habe ich die Seiten gewechselt. 
+            Heute programmiere ich die Lösungen, über die ich früher Verträge geschrieben habe.
+            Ich bin der <span class="bg-[var(--ikb)] text-white px-1">Architect</span>, der Code und Gesetz versteht.
+          </p>
         </div>
-        
-        <h3 class="text-2xl font-bold mb-4">Lösungs-Architektur: Blockchain & GDPR</h3>
-        <p class="text-[var(--text-muted)] leading-relaxed">
-          <strong>Das Problem:</strong> Daten auf einer Blockchain sind unveränderlich ("immutable"). Die GDPR fordert das "Recht auf Vergessenwerden". Das scheint ein unlösbarer Widerspruch.
-          <br><br>
-          <strong>Meine Lösung (Die Architektur):</strong> "Privacy-by-Design". Wir trennen Daten radikal: Personenbezogene Daten (PBD) kommen **Off-Chain** in eine Datenbank. Auf die Blockchain kommt nur ein **anonymer Hash** (ein digitaler Fingerabdruck) dieser Daten.
-          <br><br>
-          <strong>Das Ergebnis:</strong> Die Integrität der Kette ist bewiesen, aber die PBD können jederzeit nach GDPR-Vorgaben gelöscht werden. Das System ist 100% konform.
-        </p>
-      </div>
-
-      <div class="nb-border nb-shadow p-8 card-bg">
-        <div class="nb-border p-6 mb-8" style="border-color: var(--shadow); box-shadow: 4px 4px 0 var(--shadow);">
-          <h3 class="text-2xl font-bold" style="color: var(--shadow);">"Ich will eine KI zur Vertragsanalyse nutzen, aber habe Angst vor Haftung und 'Halluzinationen'."</h3>
+        <div class="md:col-span-4 flex flex-col justify-end items-start md:items-end">
+          <a href="#problem" class="group flex items-center gap-4 font-mono text-sm uppercase tracking-widest hover:text-[var(--ikb)] transition">
+            Explore the Gap
+            <span class="text-2xl group-hover:translate-y-1 transition">↓</span>
+          </a>
         </div>
-        
-        <h3 class="text-2xl font-bold mb-4">Lösungs-Architektur: AI Governance (RAG / LLMO)</h3>
-        <p class="text-[var(--text-muted)] leading-relaxed">
-          <strong>Das Problem:</strong> Ein LLM (wie GPT) ist ein Sprachmodell, keine Wissensdatenbank. Es kann überzeugend falsche Fakten erfinden ("halluzinieren"). Wenn Ihre KI einen Vertrag falsch prüft, entsteht ein Haftungsrisiko.
-          <br><br>
-          <strong>Meine Lösung (Die Architektur):</strong> Ein **RAG-System (Retrieval-Augmented Generation)**. Dies ist die technische Umsetzung von **LLMO (Large Language Model Optimization)**: Die KI "denkt" nicht frei, sondern agiert als intelligenter Assistent, der nur auf *Ihrer* validierten, internen Wissensdatenbank (z.B. Compliance-Regeln, Gesetze) arbeitet.
-          <br><br>
-          <strong>Das Ergebnis:</strong> Sie nutzen die Power von LLMs ohne das Halluzinations-Risiko. Die KI liefert nur Antworten, die auf Ihren geprüften Quellen basieren.
-        </p>
       </div>
-
     </div>
-  </div>
-</section>
+  </section>
 
-<section id="leistungen" class="px-6 md:px-16 py-24 border-t" style="border-color: var(--border);">
-  <div class="max-w-5xl">
-    <h2 class="text-4xl font-bold mb-12">Wie ich die Brücke baue</h2>
-    
-    <div class="grid md:grid-cols-2 gap-8">
-      <div class="nb-border nb-shadow p-8 hover-warp card-bg">
-        <div class="aurora-accent mb-4"></div>
-        <h3 class="text-2xl font-bold mb-4">Regulatory Pathfinding</h3>
-        <p class="text-[var(--text-muted)] mb-4">
-          Ich zeige Ihnen, was rechtlich geht – und was nicht. 
-          Compliance-Assessment für Blockchain, AI und Tokenization-Projekte.
+  <!-- 2. THE CONFLICT -->
+  <section id="problem" class="swiss-border-t swiss-border-b">
+    <div class="grid md:grid-cols-2">
+      <div class="p-12 md:p-24 swiss-border-r md:border-r-2 border-black flex flex-col justify-center bg-gray-50">
+        <h2 class="text-5xl md:text-7xl font-serif italic mb-8 leading-tight">
+          Warum Projekte scheitern.
+        </h2>
+        <p class="font-serif text-2xl leading-relaxed max-w-md">
+          "Legal spricht Risiken. IT spricht Features. Business spricht ROI."
         </p>
-        <ul class="text-sm text-[var(--text-muted)] space-y-2">
-          <li>• GDPR & MiCA-Konformität prüfen</li>
-          <li>• Rechtliche Risiken identifizieren</li>
-          <li>• Regulatorische Roadmap erstellen</li>
+        <div class="mt-12 font-mono text-xs uppercase tracking-widest text-[var(--ikb)]">
+          /// The Lost in Translation Gap
+        </div>
+      </div>
+
+      <div class="flex flex-col font-mono">
+        <div class="p-12 border-b-2 border-black flex-1 hover-ikb group cursor-default transition-colors">
+          <div class="flex justify-between items-start mb-4">
+            <span class="text-xs border border-black px-2 py-1 rounded-none group-hover:border-white group-hover:bg-white group-hover:text-[var(--ikb)]">PROBLEM 01</span>
+            <i class="fas fa-ban text-3xl"></i>
+          </div>
+          <h3 class="text-xl font-bold mb-4 uppercase font-serif italic">Risiko-Blockade</h3>
+          <p class="text-sm opacity-90 leading-relaxed">
+            Rechtsabteilungen verstehen Smart Contracts nicht. Aus Vorsicht vor MiCA oder GDPR stoppen sie Innovationen.
+          </p>
+        </div>
+
+        <div class="p-12 flex-1 hover-ikb group cursor-default transition-colors">
+          <div class="flex justify-between items-start mb-4">
+            <span class="text-xs border border-black px-2 py-1 rounded-none group-hover:border-white group-hover:bg-white group-hover:text-[var(--ikb)]">PROBLEM 02</span>
+            <i class="fas fa-bug text-3xl"></i>
+          </div>
+          <h3 class="text-xl font-bold mb-4 uppercase font-serif italic">Fataler Code</h3>
+          <p class="text-sm opacity-90 leading-relaxed">
+            Entwickler bauen technisch brillante Lösungen, die illegal sind. Das Ergebnis: Ein teurer 'Rewrite' oder Bußgelder.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3. THE SOLUTION (VENN) -->
+  <section id="solution" class="py-24 px-6 bg-white overflow-hidden border-b-2 border-black">
+    <div class="max-w-4xl mx-auto text-center mb-16">
+      <h2 class="font-serif text-4xl italic mb-4">Die Lösung: Symbiose</h2>
+      <p class="font-mono text-sm uppercase tracking-widest">Ich schließe die Lücke zwischen den Silos.</p>
+    </div>
+
+    <div class="venn-container scale-75 md:scale-100">
+      <div class="venn-circle venn-law">LAW</div>
+      <div class="venn-circle venn-tech">TECH</div>
+      <div class="venn-circle venn-biz">BUSINESS</div>
+      <div class="venn-me">
+        <span class="font-serif text-3xl italic">Me</span>
+        <span class="font-mono text-[10px] uppercase tracking-widest mt-1">Architect</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- 4. THE PROFILE -->
+  <section id="profile" class="py-24 px-6 md:px-12 bg-gray-50 border-b-2 border-black">
+    <div class="max-w-6xl mx-auto">
+      <div class="grid md:grid-cols-12 gap-12 items-center">
+        
+        <!-- TEXT -->
+        <div class="md:col-span-7 order-2 md:order-1">
+          <p class="font-mono text-xs uppercase tracking-[0.2em] mb-6 text-[var(--ikb)]">/// The Architect</p>
+          <h2 class="font-serif text-4xl md:text-5xl italic mb-8 leading-tight">
+            "Ich übersetze Business-Logik in rechtssicheren Code."
+          </h2>
+          <div class="space-y-6 font-mono text-sm leading-relaxed text-gray-700 border-l-2 border-black pl-6">
+            <p>
+              Nach über 10 Jahren in Corporate Law & Compliance (Sales, Strategy) habe ich einen radikalen Schritt gemacht: Deep Dive in Software Engineering.
+            </p>
+            <p>
+              Warum? Weil Verträge allein keine komplexen Probleme in einer digitalen Welt lösen. Heute bin ich kein Anwalt, der "ein bisschen Tech" versteht. Ich bin ein <strong>Solutions Architect</strong>, der Ihre Vision technisch und rechtlich absichert.
+            </p>
+          </div>
+          <div class="flex gap-4 mt-8 font-mono text-xs uppercase tracking-widest">
+            <span class="bg-black text-white px-3 py-1">Diplom-Jurist</span>
+            <span class="bg-[var(--ikb)] text-white px-3 py-1">AI Engineer</span>
+          </div>
+        </div>
+
+        <!-- FOTO -->
+        <div class="md:col-span-5 order-1 md:order-2">
+          <div class="relative p-2 border-2 border-black bg-white shadow-[12px_12px_0_0_#002FA7]">
+            <!-- PLATZHALTER BILD: Ersetze 'dein-foto.jpg' mit dem echten Pfad -->
+            <img src="dein-foto.jpg" alt="Daniel Kleiboldt" class="w-full h-auto grayscale contrast-110 filter">
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- 5. SERVICES -->
+  <section id="services" class="swiss-border-b bg-white">
+    <div class="grid md:grid-cols-3 divide-y md:divide-y-0 md:divide-x-2 divide-black">
+      
+      <!-- Service 1: AUDIT -->
+      <div class="p-12 hover:bg-gray-50 transition duration-300 group">
+        <div class="font-mono text-xs mb-12 border border-black inline-block px-3 py-1 bg-white group-hover:bg-[var(--ikb)] group-hover:text-white group-hover:border-[var(--ikb)] transition">AUDIT</div>
+        <h3 class="font-serif text-3xl italic mb-6">The Quick Check</h3>
+        <p class="font-mono text-sm leading-relaxed text-gray-600 mb-12 min-h-[80px]">
+          Ein 48h Review Ihrer AI- oder Blockchain-Idee. Ist sie rechtlich machbar? Ist sie technisch sinnvoll?
+        </p>
+        <ul class="font-mono text-xs space-y-4 border-t-2 border-black pt-8">
+          <li class="flex items-center"><i class="fas fa-arrow-right text-[var(--ikb)] mr-3"></i> Feasibility Report</li>
+          <li class="flex items-center"><i class="fas fa-arrow-right text-[var(--ikb)] mr-3"></i> Red Flag Identifikation</li>
         </ul>
       </div>
 
-      <div class="nb-border nb-shadow p-8 hover-warp card-bg">
-        <div class="aurora-accent mb-4"></div>
-        <h3 class="text-2xl font-bold mb-4">Solution Architecture</h3>
-        <p class="text-[var(--text-muted)] mb-4">
-          Ich designe die technische Lösung – rechtssicher von Anfang an. 
-          Smart Contracts, Token-Lifecycle, Custody-Modelle.
+      <!-- Service 2: IMPLEMENTATION (CORE) -->
+      <div class="p-12 hover:bg-gray-50 transition duration-300 bg-[var(--ikb)] text-white relative overflow-hidden group">
+        <div class="absolute top-0 right-0 bg-black text-white text-[10px] font-mono uppercase px-3 py-1 font-bold">Core</div>
+        <div class="font-mono text-xs mb-12 border border-white inline-block px-3 py-1 group-hover:bg-white group-hover:text-[var(--ikb)] transition">IMPLEMENTATION</div>
+        <h3 class="font-serif text-3xl italic mb-6">Compliance Architecture</h3>
+        <p class="font-mono text-sm leading-relaxed opacity-90 mb-12 min-h-[80px]">
+          Design und Begleitung der technischen Umsetzung. Wir schreiben User Stories für Compliance (MiCA/GDPR).
         </p>
-        <ul class="text-sm text-[var(--text-muted)] space-y-2">
-          <li>• Tokenization-Strategien entwickeln</li>
-          <li>• Smart Contract Design (Compliance-Layer)</li>
-          <li>• Design von KI-Architekturen (RAG / LLMO)</li>
+        <ul class="font-mono text-xs space-y-4 border-t-2 border-white/30 pt-8">
+          <li class="flex items-center"><i class="fas fa-check mr-3"></i> Architecture Blueprints</li>
+          <li class="flex items-center"><i class="fas fa-check mr-3"></i> Dev Team Briefings</li>
+          <li class="flex items-center"><i class="fas fa-check mr-3"></i> Smart Contract Specs</li>
         </ul>
       </div>
 
-      <div class="nb-border nb-shadow p-8 hover-warp card-bg">
-        <div class="aurora-accent mb-4"></div>
-        <h3 class="text-2xl font-bold mb-4">Stakeholder Translation</h3>
-        <p class="text-[var(--text-muted)] mb-4">
-          Ich übersetze zwischen Legal, Tech und C-Level. 
-          Ihre Rechtsabteilung versteht mich. Ihr Dev-Team versteht mich. Ihr Board versteht mich.
+      <!-- Service 3: WORKSHOP -->
+      <div class="p-12 hover:bg-gray-50 transition duration-300 group">
+        <div class="font-mono text-xs mb-12 border border-black inline-block px-3 py-1 bg-white group-hover:bg-[var(--ikb)] group-hover:text-white group-hover:border-[var(--ikb)] transition">WORKSHOP</div>
+        <h3 class="font-serif text-3xl italic mb-6">The Bridge Workshop</h3>
+        <p class="font-mono text-sm leading-relaxed text-gray-600 mb-12 min-h-[80px]">
+          Ich bringe Ihre Juristen und Entwickler in einen Raum. Nach einem Tag verstehen sie sich.
         </p>
-        <ul class="text-sm text-[var(--text-muted)] space-y-2">
-          <li>• Technical Due Diligence</li>
-          <li>• Requirements Engineering</li>
-          <li>• Executive Briefings</li>
+        <ul class="font-mono text-xs space-y-4 border-t-2 border-black pt-8">
+          <li class="flex items-center"><i class="fas fa-arrow-right text-[var(--ikb)] mr-3"></i> Vocabulary Alignment</li>
+          <li class="flex items-center"><i class="fas fa-arrow-right text-[var(--ikb)] mr-3"></i> Risk Assessment Training</li>
         </ul>
       </div>
 
-      <div class="nb-border nb-shadow p-8 hover-warp card-bg">
-        <div class="aurora-accent mb-4"></div>
-        <h3 class="text-2xl font-bold mb-4">Training & Workshops</h3>
-        <p class="text-[var(--text-muted)] mb-4">
-          Ich befähige Ihre Teams, selbst Brücken zu bauen. 
-          Praxisnahe Schulungen zu Blockchain, AI und Compliance.
+    </div>
+  </section>
+
+  <!-- 6. PROOF (CERTS) -->
+  <section id="certs" class="py-24 px-6 md:px-12">
+    <div class="max-w-7xl mx-auto">
+      <div class="grid md:grid-cols-12 gap-12 mb-20 border-b-2 border-black pb-8">
+        <div class="md:col-span-5">
+          <h2 class="font-serif text-5xl italic leading-tight">
+            Qualification<br>& Certs
+          </h2>
+        </div>
+        <div class="md:col-span-7 flex items-end">
+          <p class="font-mono text-lg pl-8 border-l-4 border-[var(--ikb)] max-w-xl">
+            Technische Expertise, formal zertifiziert.
+          </p>
+        </div>
+      </div>
+
+      <div class="space-y-0">
+        <!-- Cert 1 -->
+        <div class="grid md:grid-cols-12 border-b border-gray-300 py-12 group hover:bg-gray-50 transition">
+          <div class="col-span-2 font-mono text-sm text-gray-400 pt-4">2026 (Goal)</div>
+          <div class="col-span-3 pt-2">
+            <svg class="w-24 h-24 text-black group-hover:text-[var(--ikb)] transition transform group-hover:scale-110 duration-300" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="3">
+              <rect x="16" y="16" width="12" height="12"/><rect x="36" y="36" width="12" height="12"/><line x1="28" y1="28" x2="36" y2="36"/><rect x="10" y="10" width="44" height="44" stroke-width="1" stroke-dasharray="4 4"/>
+            </svg>
+          </div>
+          <div class="col-span-7 flex flex-col justify-center">
+            <h3 class="text-3xl font-serif font-bold mb-2">Certified Blockchain Architect</h3>
+            <span class="font-mono text-xs uppercase tracking-widest text-gray-500">Blockchain Council</span>
+          </div>
+        </div>
+
+        <!-- Cert 2 -->
+        <div class="grid md:grid-cols-12 border-b border-gray-300 py-12 group hover:bg-gray-50 transition">
+          <div class="col-span-2 font-mono text-sm text-gray-400 pt-4">2025</div>
+          <div class="col-span-3 pt-2">
+             <svg class="w-32 h-16 text-black group-hover:text-[var(--ikb)] transition transform group-hover:scale-110 duration-300" viewBox="0 0 265 80" fill="currentColor">
+               <path d="M30,38 Q30,10 50,10 L80,10 Q90,10 90,20 L90,30 H60 V38 H30 Z M60,42 H90 V50 Q90,70 70,70 L40,70 Q30,70 30,60 L30,42 Z" fill="none" stroke="currentColor" stroke-width="5"/>
+               <text x="110" y="55" font-family="monospace" font-weight="bold" font-size="40">PCAP</text>
+             </svg>
+          </div>
+          <div class="col-span-7 flex flex-col justify-center">
+            <h3 class="text-3xl font-serif font-bold mb-2">Python Associate</h3>
+            <span class="font-mono text-xs uppercase tracking-widest text-gray-500">Python Institute</span>
+          </div>
+        </div>
+
+        <!-- Cert 3 -->
+        <div class="grid md:grid-cols-12 border-b border-gray-300 py-12 group hover:bg-gray-50 transition">
+          <div class="col-span-2 font-mono text-sm text-gray-400 pt-4">2025</div>
+          <div class="col-span-3 pt-2">
+             <svg class="w-24 h-24 text-black group-hover:text-[var(--ikb)] transition transform group-hover:scale-110 duration-300" viewBox="0 0 100 100" fill="currentColor">
+               <path d="M20,50 Q35,30 50,30 T80,50 M25,65 Q50,85 75,65 L72,60" stroke="currentColor" stroke-width="4" fill="none"/>
+               <text x="50" y="55" text-anchor="middle" font-family="sans-serif" font-weight="bold" font-size="20">AWS</text>
+             </svg>
+          </div>
+          <div class="col-span-7 flex flex-col justify-center">
+            <h3 class="text-3xl font-serif font-bold mb-2">Certified Cloud Practitioner</h3>
+            <span class="font-mono text-xs uppercase tracking-widest text-gray-500">Amazon Web Services</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 7. ENGAGEMENT MODELS -->
+  <section id="invest" class="py-24 px-6 md:px-12 bg-gray-50 border-t-2 border-black">
+    <h2 class="font-mono text-sm uppercase tracking-widest mb-12 text-center text-[var(--ikb)]">/// Engagement Models</h2>
+    
+    <div class="max-w-6xl mx-auto swiss-border bg-white shadow-[12px_12px_0_0_#002FA7]">
+      <div class="grid grid-cols-12 bg-black text-white font-mono text-xs uppercase py-4 px-6 hidden md:grid">
+        <div class="col-span-4">Package</div>
+        <div class="col-span-6">Deliverables</div>
+        <div class="col-span-2 text-right">Invest</div>
+      </div>
+
+      <!-- Model 1 -->
+      <div class="grid md:grid-cols-12 border-b border-black group hover:bg-gray-50 transition cursor-default">
+        <div class="md:col-span-4 p-8 border-b md:border-b-0 md:border-r border-black">
+          <h3 class="font-serif text-2xl italic font-bold">The Quick Audit</h3>
+          <p class="font-mono text-xs mt-3 text-gray-500">Validierung.</p>
+        </div>
+        <div class="md:col-span-6 p-8 border-b md:border-b-0 md:border-r border-black font-mono text-sm flex items-center">
+          <ul class="list-disc pl-4 space-y-2">
+            <li>Rechtliche Machbarkeitsanalyse</li>
+            <li>Technische Grob-Architektur</li>
+            <li>Red Flag Report</li>
+          </ul>
+        </div>
+        <div class="md:col-span-2 p-8 flex items-center justify-end font-mono font-bold text-lg">
+          Fixpreis
+        </div>
+      </div>
+
+      <!-- Model 2 -->
+      <div class="grid md:grid-cols-12 border-b border-black group relative overflow-hidden cursor-default">
+        <div class="absolute left-0 top-0 bottom-0 w-2 bg-[var(--ikb)]"></div>
+        <div class="md:col-span-4 p-8 border-b md:border-b-0 md:border-r border-black pl-10">
+          <span class="bg-[var(--ikb)] text-white text-[10px] font-mono px-2 py-1 mb-2 inline-block">RECOMMENDED</span>
+          <h3 class="font-serif text-2xl italic font-bold">Architecture Design</h3>
+          <p class="font-mono text-xs mt-3 text-gray-500">Projektstart.</p>
+        </div>
+        <div class="md:col-span-6 p-8 border-b md:border-b-0 md:border-r border-black font-mono text-sm flex items-center bg-blue-50/30">
+          <ul class="list-disc pl-4 space-y-2">
+            <li>Detaillierte Blueprints</li>
+            <li>Compliance User Stories</li>
+            <li>Spec Sheets</li>
+          </ul>
+        </div>
+        <div class="md:col-span-2 p-8 flex items-center justify-end font-mono font-bold text-lg bg-blue-50/30">
+          Projektbasis
+        </div>
+      </div>
+
+      <!-- Model 3 -->
+      <div class="grid md:grid-cols-12 group hover:bg-gray-50 transition cursor-default">
+        <div class="md:col-span-4 p-8 border-b md:border-b-0 md:border-r border-black">
+          <h3 class="font-serif text-2xl italic font-bold">The Bridge Workshop</h3>
+          <p class="font-mono text-xs mt-3 text-gray-500">Alignment.</p>
+        </div>
+        <div class="md:col-span-6 p-8 border-b md:border-b-0 md:border-r border-black font-mono text-sm flex items-center">
+          <ul class="list-disc pl-4 space-y-2">
+            <li>1 Tag Workshop</li>
+            <li>"Tech für Juristen"</li>
+            <li>Vokabular entwickeln</li>
+          </ul>
+        </div>
+        <div class="md:col-span-2 p-8 flex items-center justify-end font-mono font-bold text-lg">
+          Tagessatz
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 8. FOOTER -->
+  <footer class="bg-black text-white py-24 px-6 md:px-12 border-t-8 border-[var(--ikb)]">
+    <div class="max-w-7xl mx-auto grid md:grid-cols-2 gap-12">
+      <div>
+        <h2 class="font-serif text-5xl md:text-7xl italic mb-12">Let's build.</h2>
+        <p class="font-mono text-lg leading-relaxed max-w-md text-gray-400 mb-12">
+          Schließen wir die Lücke zwischen Code und Gesetz.<br>
+          Unverbindliches Erstgespräch.
         </p>
-        <ul class="text-sm text-[var(--text-muted)] space-y-2">
-          <li>• Blockchain & Compliance für Teams</li>
-          <li>• Smart Contracts verstehen</li>
-          <li>• Legal Tech für Juristen</li>
-        </ul>
+        <a href="mailto:contact@dkleiboldt.de" class="group inline-flex items-center bg-[var(--ikb)] text-white font-mono font-bold text-lg px-10 py-5 hover:bg-white hover:text-[var(--ikb)] transition duration-300">
+          <i class="fas fa-envelope mr-4"></i> contact@dkleiboldt.de
+          <span class="ml-4 opacity-0 group-hover:opacity-100 transition-opacity">-></span>
+        </a>
       </div>
-    </div>
-  </div>
-</section>
-
-<section id="erfolge" class="px-6 md:px-16 py-24 border-t" style="border-color: var(--border);">
-  <div class="max-w-5xl">
-    <h2 class="text-4xl font-bold mb-4">Brücken, die ich gebaut habe</h2>
-    <div class="aurora-accent mb-12 w-32"></div>
-    
-    <div class="space-y-8">
-      
-      <div class="nb-border nb-shadow p-8 hover-warp card-bg">
-        <h3 class="text-2xl font-bold mb-6">FinTech: Token-Lifecycle unter MiCA</h3>
-        <div class="grid md:grid-cols-3 gap-8">
-          <div>
-            <div class="text-4xl mb-3" style="color: var(--shadow);">01</div>
-            <strong class="block mb-3 text-lg">Problem</strong>
-            <p class="text-[var(--text-muted)]">
-              Bank wollte Asset-Tokenization, aber Legal blockierte das €10M-Projekt wegen MiCA-Unsicherheit. Tech-Team und Legal sprachen nicht dieselbe Sprache. Geschätzte 18 Monate Stillstand.
-            </p>
-          </div>
-          <div>
-            <div class="text-4xl mb-3" style="color: var(--shadow);">02</div>
-            <strong class="block mb-3 text-lg">Meine Lösung (Als Architekt)</strong>
-            <p class="text-[var(--text-muted)]">
-              <strong>Als Übersetzer</strong> habe ich die MiCA-Anforderungen in eine **technische Architektur-Blaupause** übersetzt. Ich habe dem Legal-Team die Smart-Contract-Logik (z.B. Custody, Compliance-Layer) validierbar gemacht und dem Dev-Team klare Compliance-User-Stories geliefert.
-            </p>
-          </div>
-          <div>
-            <div class="text-4xl mb-3" style="color: var(--shadow);">03</div>
-            <strong class="block mb-3 text-lg">Ergebnis</strong>
-            <p class="text-[var(--text-muted)]">
-              Grünes Licht von Legal & Regulatoren **innerhalb von Tagen**. Das €10M-Investment wurde freigegeben, da die Architektur von allen Stakeholdern verstanden und abgenommen war. Time-to-Market: 8 Wochen.
-            </p>
-          </div>
+      <div class="flex flex-col justify-end items-start md:items-end font-mono text-sm text-gray-500">
+        <div class="flex gap-8 mb-6">
+          <a href="https://linkedin.com/in/daniel-kleiboldt" target="_blank" class="hover:text-white transition border-b border-transparent hover:border-white pb-1">LinkedIn</a>
+          <a href="https://github.com/dklb" target="_blank" class="hover:text-white transition border-b border-transparent hover:border-white pb-1">GitHub</a>
+          <a href="#" class="hover:text-white transition border-b border-transparent hover:border-white pb-1">X (Twitter)</a>
         </div>
-      </div>
-
-      <div class="nb-border nb-shadow p-8 hover-warp card-bg">
-        <h3 class="text-2xl font-bold mb-6">Logistik: Blockchain & GDPR-Konflikt</h3>
-        <div class="grid md:grid-cols-3 gap-8">
-          <div>
-            <div class="text-4xl mb-3" style="color: var(--shadow);">01</div>
-            <strong class="block mb-3 text-lg">Problem</strong>
-            <p class="text-[var(--text-muted)]">
-              Spedition wollte Tracking tokenisieren. Der Datenschutzbeauftragte (DPO) stoppte das Projekt wegen GDPR ("Recht auf Vergessenwerden") vs. Blockchain ("Unveränderlichkeit").
-            </p>
-          </div>
-          <div>
-            <div class="text-4xl mb-3" style="color: var(--shadow);">02</div>
-            <strong class="block mb-3 text-lg">Meine Lösung (Als Architekt)</strong>
-            <p class="text-[var(--text-muted)]">
-              Die Lösung war **architektonisch**: Ich designte ein 'Hybrid-Modell'. Nur **anonyme Hashes** (Beweise) kommen On-Chain. Die PBD (Namen, Adressen) bleiben Off-Chain und löschbar. Diese Blaupause habe ich dem DPO präsentiert und die Freigabe erwirkt.
-            </p>
-          </div>
-          <div>
-            <div class="text-4xl mb-3" style="color: var(--shadow);">03</div>
-            <strong class="block mb-3 text-lg">Ergebnis</strong>
-            <p class="text-[var(--text-muted)]">
-              Die **architektonische Freigabe** durch den DPO entblockierte das Projekt. Die GDPR-konforme Lösung ist in Produktion, spart €200K/Jahr durch Automatisierung und sichert die Marktführerposition.
-            </p>
-          </div>
-        </div>
-      </div>
-
-    </div>
-  </div>
-</section>
-
-<section id="prozess" class="px-6 md:px-16 py-24 border-t" style="border-color: var(--border);">
-  <div class="max-w-4xl">
-    <h2 class="text-4xl font-bold mb-12">Der Brückenbau-Prozess</h2>
-    
-    <div class="space-y-12">
-      <div class="process-step" data-step="1">
-        <h3 class="text-2xl font-bold mb-3">Discovery Call</h3>
-        <p class="text-[var(--text-muted)]">
-          Wir verstehen Ihr Problem. Was wollen Sie erreichen? Wo sind die Hürden? 
-          30 Minuten, kostenlos, unverbindlich.
-        </p>
-      </div>
-
-      <div class="process-step" data-step="2">
-        <h3 class="text-2xl font-bold mb-3">Assessment</h3>
-        <p class="text-[var(--text-muted)]">
-          Ich analysiere rechtliche, technische und wirtschaftliche Aspekte. 
-          Sie erhalten einen klaren Bericht: Was geht, was geht nicht, was kostet es.
-        </p>
-      </div>
-
-      <div class="process-step" data-step="3">
-        <h3 class="text-2xl font-bold mb-3">Solution Design</h3>
-        <p class="text-[var(--text-muted)]">
-          Gemeinsam entwickeln wir die Architektur. Rechtssicher, technisch solide, 
-          wirtschaftlich sinnvoll. Ich übersetze zwischen allen Stakeholdern.
-        </p>
-      </div>
-
-      <div class="process-step" data-step="4">
-        <h3 class="text-2xl font-bold mb-3">Implementation Support</h3>
-        <p class="text-[var(--text-muted)]">
-          Ich begleite die Umsetzung. Code-Reviews, Compliance-Checks, 
-          Training für Ihre Teams. Die Brücke wird fertig – und Sie gehen rüber.
+        <p class="text-right">
+          &copy; 2025 Daniel Kleiboldt.<br>
+          Münster, Germany.
         </p>
       </div>
     </div>
-  </div>
-</section>
-
-<section class="px-6 md:px-16 py-24 border-t" style="border-color: var(--border);">
-  <div class="max-w-5xl">
-    <h2 class="text-4xl font-bold mb-4">Warum jetzt handeln?</h2>
-    <div class="aurora-accent mb-12 w-32"></div>
-    
-    <div class="grid md:grid-cols-3 gap-8 mb-20">
-      <div class="nb-border nb-shadow p-8 card-bg">
-        <div class="text-5xl font-bold mb-4" style="color: var(--shadow);">75%</div>
-        <p class="text-[var(--text-muted)]">der Blockchain-Projekte scheitern an rechtlicher Unsicherheit, nicht an der Technologie</p>
-        <p class="text-xs text-[var(--text-muted)] mt-4 opacity-60">Deloitte Blockchain Survey</p>
-      </div>
-
-      <div class="nb-border nb-shadow p-8 card-bg">
-        <div class="text-5xl font-bold mb-4" style="color: var(--shadow);">€50M+</div>
-        <p class="text-[var(--text-muted)]">Mögliche Strafzahlung bei schweren MiCA-Verstößen</p>
-        <p class="text-xs text-[var(--text-muted)] mt-4 opacity-60">EU MiCA Regulation</p>
-      </div>
-
-      <div class="nb-border nb-shadow p-8 card-bg">
-        <div class="text-5xl font-bold mb-4" style="color: var(--shadow);">100%</div>
-        <p class="text-[var(--text-muted)]">der EU-Unternehmen müssen bis Ende 2025 MiCA-konform sein</p>
-        <p class="text-xs text-[var(--text-muted)] mt-4 opacity-60">ESMA Deadline</p>
-      </div>
-    </div>
-
-    <div class="nb-border nb-shadow p-6 md:p-10 card-bg">
-      <h3 class="text-3xl font-bold mb-8 text-center">Der Wert von Compliance-by-Design</h3>
-      
-      <div class="relative pt-12" style="height: 400px;">
-        
-        <div class="absolute" style="left: 50%; top: 0;">
-          <div class="absolute left-1/2 transform -translate-x-1/2 nb-border bg-[var(--shadow)] text-white px-3 py-1 text-xs font-bold whitespace-nowrap">
-            ← HEUTE (MiCA)
-          </div>
-        </div>
-
-        <div class="absolute left-0 top-12 bottom-12 flex flex-col justify-between text-sm text-[var(--text-muted)]">
-          <span>Hoher ROI</span>
-          <span></span>
-          <span>Niedriger ROI</span>
-        </div>
-    
-        <div class="absolute left-24 right-8 top-12 bottom-12">
-          <div class="absolute inset-0 flex flex-col justify-between">
-            <div class="border-t-2 border-dashed" style="border-color: var(--text-muted); opacity: 0.2;"></div>
-            <div class="border-t-2 border-dashed" style="border-color: var(--text-muted); opacity: 0.2;"></div>
-            <div class="border-t-2" style="border-color: var(--border);"></div>
-          </div>
-    
-          <svg class="absolute inset-0 w-full h-full" viewBox="0 0 100 100" preserveAspectRatio="none">
-            <path d="M 0 60 Q 20 50, 40 45 L 50 42 Q 60 41, 100 40" stroke="var(--text-muted)" stroke-width="2.5" fill="none" stroke-dasharray="6 6" />
-            <path d="M 0 80 Q 20 78, 40 70 L 50 42 Q 70 10, 100 0" stroke="var(--shadow)" stroke-width="3" fill="none" />
-          </svg>
-    
-          <div class="absolute" style="left: 50%; top: 0; bottom: 0;">
-            <div class="absolute top-0 bottom-0 w-0.5 border-l-2 border-dashed" style="border-color: var(--shadow);"></div>
-            <span class="absolute -bottom-8 left-1/2 transform -translate-x-1/2 text-xs font-bold">2025</span>
-          </div>
-        </div>
-    
-        <div class="absolute bottom-0 left-24 right-8 flex justify-between text-sm text-[var(--text-muted)] pt-2">
-          <span>2020</span>
-          <span></span>
-          <span>2030+</span>
-        </div>
-      </div>
-
-      <div class="flex flex-col md:flex-row justify-center gap-4 md:gap-8 mt-12">
-        <div class="flex items-center gap-2">
-          <div class="w-4 h-1 border-t-2 border-dashed" style="border-color: var(--text-muted);"></div>
-          <span class="text-sm text-[var(--text-muted)]">Innovation 'Quick & Dirty'</span>
-        </div>
-        <div class="flex items-center gap-2">
-          <div class="w-4 h-1" style="background: var(--shadow);"></div>
-          <span class="text-sm text-[var(--text)]">Compliance-Architektur</span>
-        </div>
-      </div>
-
-      <p class="text-center text-[var(--text-muted)] mt-8 max-w-3xl mx-auto">
-        Unternehmen, die <strong>HEUTE</strong> (MiCA-Deadline) ohne rechtssichere Architektur starten, scheitern an der Skalierung. 
-        Wer mitdenkt, gewinnt exponentiell.
-      </p>
-    </div>
-  </div>
-</section>
-
-<section class="px-6 md:px-16 py-24 border-t" style="border-color: var(--border);">
-  <div class="max-w-5xl">
-    <h2 class="text-4xl font-bold mb-10">Womit ich arbeite</h2>
-    <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
-      <div class="nb-border nb-shadow p-4 hover-warp card-bg text-center">Python</div>
-      <div class="nb-border nb-shadow p-4 hover-warp card-bg text-center">Blockchain</div>
-      <div class="nb-border nb-shadow p-4 hover-warp card-bg text-center">Smart Contracts</div>
-      <div class="nb-border nb-shadow p-4 hover-warp card-bg text-center">AI/ML</div>
-      <div class="nb-border nb-shadow p-4 hover-warp card-bg text-center">Tokenization</div>
-      <div class="nb-border nb-shadow p-4 hover-warp card-bg text-center">AWS/GCP</div>
-      <div class="nb-border nb-shadow p-4 hover-warp card-bg text-center">GDPR/MiCA</div>
-      <div class="nb-border nb-shadow p-4 hover-warp card-bg text-center">System Design</div>
-    </div>
-  </div>
-</section>
-
-<section class="px-6 md:px-16 py-24 border-t" style="border-color: var(--border);">
-  <div class="max-w-6xl">
-    <h2 class="text-4xl font-bold mb-4">Zertifizierungen</h2>
-    <div class="aurora-accent mb-10 w-32"></div>
-    <div class="grid md:grid-cols-3 gap-8">
-      
-      <div class="nb-border nb-shadow p-8 hover-warp card-bg">
-        <div class="flex items-center justify-center mb-6 h-40">
-          <svg class="w-40 h-40" viewBox="0 0 265 80">
-            <text x="10" y="38" font-family="Arial" font-size="36" font-weight="bold" fill="currentColor">Python</text>
-            <text x="10" y="68" font-family="Arial" font-size="22" fill="currentColor">INSTITUTE</text>
-            <circle cx="225" cy="40" r="38" fill="none" stroke="currentColor" stroke-width="5"/>
-            <text x="225" y="45" font-family="Arial" font-size="30" font-weight="bold" fill="currentColor" text-anchor="middle" dominant-baseline="middle">PI</text>
-          </svg>
-        </div>
-        <h3 class="text-xl font-bold mb-3 text-center">PCAP</h3>
-        <p class="text-[var(--text-muted)] text-center text-sm">Certified Associate in Python Programming</p>
-      </div>
-
-      <div class="nb-border nb-shadow p-8 hover-warp card-bg">
-        <div class="flex items-center justify-center mb-6 h-40">
-          <svg class="w-48 h-40" viewBox="0 0 200 80" fill="currentColor">
-            <text x="10" y="30" font-family="Arial" font-size="40" font-weight="bold">aws</text>
-            <text x="10" y="55" font-family="Arial" font-size="14" font-weight="bold">Certified</text>
-            <text x="10" y="72" font-family="Arial" font-size="14" font-weight="bold">Cloud Practitioner</text>
-          </svg>
-        </div>
-        <h3 class="text-xl font-bold mb-3 text-center">AWS Certified Cloud Practitioner</h3>
-        <p class="text-[var(--text-muted)] text-center text-sm">Foundational Level</p>
-      </div>
-      
-      <div class="nb-border nb-shadow p-8 hover-warp card-bg">
-        <div class="flex items-center justify-center mb-6 h-40">
-          <svg class="w-40 h-40" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="square">
-            <path d="M16 20 H 32 V 28 H 16 V 20 Z" />
-            <path d="M24 28 L 24 36" />
-            <path d="M32 36 H 48 V 44 H 32 V 36 Z" />
-            <path d="M40 36 L 40 28" />
-            <path d="M24 44 H 40" />
-          </svg>
-        </div>
-        <h3 class="text-xl font-bold mb-3 text-center">Certified Blockchain Architect</h3>
-        <p class="text-[var(--text-muted)] text-center text-sm">(Ziel-Zertifizierung)</p>
-      </div>
-      
-    </div>
-  </div>
-</section>
-
-<section id="kontakt" class="px-6 md:px-16 py-32 border-t" style="border-color: var(--border); background: var(--card-bg);">
-  <div class="max-w-3xl mx-auto text-center">
-    <h2 class="text-5xl font-bold mb-8">Bereit, Ihre Brücke zu bauen?</h2>
-    <div class="aurora-accent mb-12 w-48 mx-auto"></div>
-    <p class="text-xl text-[var(--text-muted)] mb-12 leading-relaxed">
-      Ich biete ein kostenloses 30-minütiges Erstgespräch. 
-      Wir klären Ihre Fragen. Sie entscheiden danach.
-    </p>
-    <a href="/cdn-cgi/l/email-protection#6307020d0a060f23080f060a010c0f07174d000c0e" class="cta-button text-xl">
-      Jetzt Termin buchen →
-    </a>
-    <p class="text-sm text-[var(--text-muted)] mt-8">
-      Oder schreiben Sie mir direkt: <a href="/cdn-cgi/l/email-protection#2d494c434448416d464148444f42414959034e4240"><span class="__cf_email__" data-cfemail="7410151a1d1118341f18111d161b1810005a171b19">[email&#160;protected]</span></a>
-    </p>
-  </div>
-</section>
-
-<section class="px-6 md:px-16 py-24 border-t" style="border-color: var(--border);">
-  <div class="grid md:grid-cols-2 gap-10 items-center max-w-4xl mx-auto">
-    <div class="nb-border nb-shadow overflow-hidden">
-      <img src="profilbild.jpg" alt="Daniel Kleiboldt" class="w-full h-full object-cover">
-    </div>
-    <div>
-      <h2 class="text-3xl font-bold mb-4">Ihr Architekt</h2>
-      <div class="aurora-accent mb-6 w-24"></div>
-      <p class="text-lg leading-relaxed text-[var(--text-muted)]">
-        Ich bin Daniel – Jurist, Stratege, Technologist. In dieser Reihenfolge.
-      </p>
-      <p class="text-lg leading-relaxed text-[var(--text-muted)]">
-        Die meisten Tech-Projekte scheitern nicht am Code, sondern am Risiko, an der Regulatorik oder an der mangelnden Übersetzung zum Business. 
-        Als Diplom-Jurist **de-riskiere** ich Ihre Innovation. Als Stratege verstehe ich Ihren **ROI**. Als Technologist designe ich die **konforme Architektur**. 
-        Ich baue die Brücke, damit Sie sicher auf die andere Seite kommen.
-      </p>
-    </div>
-  </div>
-</section>
-
-</div>
-
-<footer class="px-6 md:px-16 py-16 border-t" style="border-color: var(--border);">
-  <div class="aurora-accent mb-8"></div>
-  <div class="flex gap-4 mb-8">
-    <a href="https://github.com/dklb" target="_blank" class="social-icon nb-border nb-shadow hover-warp">
-      <i class="fab fa-github"></i>
-    </a>
-    <a href="https://linkedin.com/in/daniel-kleiboldt" target="_blank" class="social-icon nb-border nb-shadow hover-warp">
-      <i class="fab fa-linkedin"></i>
-    </a>
-    <a href="/cdn-cgi/l/email-protection#2440454a4d4148644f48414d464b4840500a474b49" class="social-icon nb-border nb-shadow hover-warp">
-      <i class="fas fa-envelope"></i>
-    </a>
-    <a href="https://x.com/dklb" target="_blank" class="social-icon nb-border nb-shadow hover-warp">
-      <svg class="x-logo" viewBox="0 0 24 24" fill="currentColor">
-        <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
-      </svg>
-    </a>
-  </div>
-  <p class="text-sm text-[var(--text-muted)] freelance-only">
-    Projekt im Kopf? Schreiben Sie mir: <a href="/cdn-cgi/l/email-protection#2440454a4d4148644f48414d464b4840500a474b49"><span class="__cf_email__" data-cfemail="4327222d2a262f03282f262a212c2f27376d202c2e">[email&#160;protected]</span></a>
-  </p>
-</footer>
-
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
-  // Variant Toggle
-  const variantButtons = document.querySelectorAll('[data-variant-btn]');
-  variantButtons.forEach(btn => {
-    btn.addEventListener('click', () => {
-      const variant = btn.dataset.variantBtn;
-      document.documentElement.setAttribute('data-variant', variant);
-      
-      // Update active state
-      variantButtons.forEach(b => b.classList.remove('active'));
-      btn.classList.add('active');
-    });
-  });
-
-  // Theme Toggle
-  const themeButtons = document.querySelectorAll('[data-theme-btn]');
-  themeButtons.forEach(btn => {
-    btn.addEventListener('click', () => {
-      const theme = btn.dataset.themeBtn;
-      document.documentElement.setAttribute('data-theme', theme);
-      
-      // Update active state
-      themeButtons.forEach(b => b.classList.remove('active'));
-      btn.classList.add('active');
-    });
-  });
-
-  // Sticky Nav for Freelance (show on scroll)
-  const freelanceNav = document.getElementById('freelance-nav');
-  if (freelanceNav) {
-    window.addEventListener('scroll', () => {
-      if (window.scrollY > 300) {
-        freelanceNav.classList.remove('hidden');
-      } else {
-        freelanceNav.classList.add('hidden');
-      }
-    });
-  }
-</script>
+  </footer>
 
 </body>
 </html>
